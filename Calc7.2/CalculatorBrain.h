@@ -1,8 +1,8 @@
 //
-//  IMFirstViewController.m
-//  Calc7.2
+//  CalculatorBrain.h
+//  Calculator3
 //
-//  Created by Joe Million on 8/2/13.
+//  Created by Joseph Million on 3/2/12.
 /*
  The MIT License (MIT)
  
@@ -27,24 +27,14 @@
  */
 //
 
-#import "IMFirstViewController.h"
+#import <Foundation/Foundation.h>
+#import "ShuntingToken.h"
 
-@interface IMFirstViewController ()
+@interface CalculatorBrain : NSObject
 
-@end
+@property (nonatomic, strong) NSString *syntaxError;
 
-@implementation IMFirstViewController
+-(NSString *) evaluateExpression: (NSString *) input;
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

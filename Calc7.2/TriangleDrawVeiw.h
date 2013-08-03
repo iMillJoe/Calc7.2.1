@@ -1,8 +1,8 @@
 //
-//  IMFirstViewController.m
-//  Calc7.2
+//  TriangleDrawVeiw.h
+//  Triangle Calculator
 //
-//  Created by Joe Million on 8/2/13.
+//  Created by Joseph Million on 5/12/12.
 /*
  The MIT License (MIT)
  
@@ -27,24 +27,14 @@
  */
 //
 
-#import "IMFirstViewController.h"
+#import <UIKit/UIKit.h>
+#import "IMTriangle.h"
 
-@interface IMFirstViewController ()
-
+@protocol TriangleDrawViewDataSource
+-(IMTriangle *) triangle;
 @end
 
-@implementation IMFirstViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+@interface TriangleDrawVeiw : UIView
+@property (nonatomic , weak) id <TriangleDrawViewDataSource> dataSource;
 
 @end

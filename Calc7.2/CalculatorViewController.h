@@ -1,8 +1,8 @@
 //
-//  IMFirstViewController.m
-//  Calc7.2
+//  CalculatorViewController.h
+//  Calculator3
 //
-//  Created by Joe Million on 8/2/13.
+//  Created by Joseph Million on 3/2/12.
 /*
  The MIT License (MIT)
  
@@ -27,24 +27,15 @@
  */
 //
 
-#import "IMFirstViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface IMFirstViewController ()
 
-@end
+@interface CalculatorViewController : UIViewController <UIInputViewAudioFeedback, UITextFieldDelegate>
 
-@implementation IMFirstViewController
+@property (weak, nonatomic) IBOutlet UILabel *currentExpression;
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
+@property (weak, nonatomic) IBOutlet UITextView *answerView;
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 @end

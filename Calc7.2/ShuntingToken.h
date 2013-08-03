@@ -1,8 +1,8 @@
 //
-//  IMFirstViewController.m
-//  Calc7.2
+//  ShuntingToken.h
+//  Calculator3
 //
-//  Created by Joe Million on 8/2/13.
+//  Created by Joseph Million on 3/8/12.
 /*
  The MIT License (MIT)
  
@@ -27,24 +27,22 @@
  */
 //
 
-#import "IMFirstViewController.h"
+#import <Foundation/Foundation.h>
 
-@interface IMFirstViewController ()
 
-@end
 
-@implementation IMFirstViewController
+@interface ShuntingToken : NSObject
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+    
+@property (nonatomic) int precedence;
+@property BOOL isRightAssociative;
+@property BOOL isFunction;
+@property (nonatomic, strong) NSNumber          *numberValue;
+@property (nonatomic, strong) NSString          *stringValue;
+@property (nonatomic, strong) NSString          *description;
+
++(ShuntingToken *) newTokenFromObject: (id) input;
+
 
 @end

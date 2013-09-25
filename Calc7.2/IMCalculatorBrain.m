@@ -1,6 +1,5 @@
 //
 //  CalculatorBrain.m
-//  Calculator3
 //
 //  Created by Joseph Million on 3/2/12.
 /*
@@ -27,10 +26,12 @@
  */
 //
 
-#import "CalculatorBrain.h"
+#import "IMCalculatorBrain.h"
 
 @interface CalculatorBrain()
 @property(nonatomic , strong) NSMutableArray *operandStack;
+
+
 @end
 
 @implementation CalculatorBrain
@@ -47,7 +48,6 @@
 
 }
 
-
 -(NSNumber *)popOperand
 {
     NSNumber *operandObject = [self.operandStack lastObject];
@@ -56,8 +56,6 @@
     return operandObject;
     
 }
-
-
 
 
 -(NSString *) evaluateExpression:(NSString *)input
@@ -90,21 +88,23 @@
     //wrap inputStack into an pretokenized Array. 
     while ([inputStack lastObject])
     {
+        NSLog(@"%@" ,numberBuilder);
         inputChar = [inputStack objectAtIndex:0];
         //if inputChar is an operator or function
-        if ([inputChar isEqualToString:@"*"] || [inputChar isEqualToString:@"/"] || [inputChar isEqualToString:@"-"] || [inputChar isEqualToString:@"+"] || [inputChar isEqualToString:@"S"] || [inputChar isEqualToString:@"C"] || [inputChar isEqualToString:@"T"] || [inputChar isEqualToString:@"("] || [inputChar isEqualToString:@")"] || [inputChar isEqualToString:@"π"] || [inputChar isEqualToString:@"√"] || [inputChar isEqualToString:@"²"]) 
+        if ([inputChar isEqualToString:@"*"] || [inputChar isEqualToString:@"/"] || [inputChar isEqualToString:@"-"] || [inputChar isEqualToString:@"+"] || [inputChar isEqualToString:@"S"] || [inputChar isEqualToString:@"C"] || [inputChar isEqualToString:@"T"] || [inputChar isEqualToString:@"("] || [inputChar isEqualToString:@")"] || [inputChar isEqualToString:@"π"] || [inputChar isEqualToString:@"√"] || [inputChar isEqualToString:@"²"] || [inputChar isEqualToString:@"⁻"] )
         {
             
             NSLog(@"operator or function in input");
             
             //if numberBuilder is not blank, add token wrapped number to tokenized array.
-            
-            if (![numberBuilder isEqualToString:@""])[tokenized addObject: [NSNumber numberWithDouble:[numberBuilder doubleValue]]];
+            if (![numberBuilder isEqualToString:@""]) {
+                    [tokenized addObject: [NSNumber numberWithDouble:[numberBuilder doubleValue]]];
+            }
             
             if ([inputChar isEqualToString: @"S"])
             {
                 //SIN 
-                if ([[inputStack objectAtIndex:1] isEqualToString:@"I"] && [[inputStack objectAtIndex:2] isEqualToString:@"N"] )
+                if (  ([[inputStack objectAtIndex:1] isEqualToString:@"I"] && [[inputStack objectAtIndex:2] isEqualToString:@"N"]) || ([[inputStack objectAtIndex:1] isEqualToString:@"i"] && [[inputStack objectAtIndex:2] isEqualToString:@"n"]))
                 {
                     [tokenized addObject:@"SIN"];
                     [inputStack removeObjectAtIndex:0];[inputStack removeObjectAtIndex:0];
@@ -115,7 +115,7 @@
             else if ([inputChar isEqualToString: @"T"])
             {
                 //TAN
-                if ([[inputStack objectAtIndex:1] isEqualToString:@"A"] && [[inputStack objectAtIndex:2] isEqualToString:@"N"] )
+                if ( ([[inputStack objectAtIndex:1] isEqualToString:@"A"] && [[inputStack objectAtIndex:2] isEqualToString:@"N"]) || ([[inputStack objectAtIndex:1] isEqualToString:@"a"] && [[inputStack objectAtIndex:2] isEqualToString:@"n"]) )
                 {
                     [tokenized addObject:@"TAN"];
                     [inputStack removeObjectAtIndex:0];[inputStack removeObjectAtIndex:0];
@@ -127,7 +127,7 @@
             else if ([inputChar isEqualToString: @"C"])
             {
                 //COS 
-                if ([[inputStack objectAtIndex:1] isEqualToString:@"O"] && [[inputStack objectAtIndex:2] isEqualToString:@"S"] )
+                if ( ([[inputStack objectAtIndex:1] isEqualToString:@"O"] && [[inputStack objectAtIndex:2] isEqualToString:@"S"]) || ([[inputStack objectAtIndex:1] isEqualToString:@"o"] && [[inputStack objectAtIndex:2] isEqualToString:@"n"]) )
                 {
                     [tokenized addObject:@"COS"];
                     [inputStack removeObjectAtIndex:0];
@@ -136,13 +136,15 @@
                 else self.syntaxError = @"hello COS error";
             }
             
-            
             //Pi and leftver tidbits
             else if ([inputChar isEqualToString:@"π"]) 
             {
                 if ([[tokenized lastObject] doubleValue])
                 {
+                    //provides implecit multiplaction for pi and numbers and a number left of pi
+                    //number to the right of pi needs added.
                     [tokenized addObject: @"*"];
+                    
                 }
                 [tokenized addObject:[NSNumber numberWithDouble: M_PI]];
             }
@@ -166,39 +168,46 @@
                 [tokenized addObject: @"sqrt"];
                 NSLog(@"squareRoot");
             }            
-            else [tokenized addObject: inputChar];numberBuilder = @"";
+            else [tokenized addObject: inputChar];
+            numberBuilder = @"";
         }       
         
 
         //if inputChar is an int, or could make a float.
         else if ([inputChar intValue] || [inputChar isEqualToString:@"."]||[inputChar isEqualToString:@"0"])
         {
-            //if numberBuilder does not already contain a '.'
-            if ([numberBuilder rangeOfString:@"."].location == NSNotFound ) 
+            
+            //if numberBuilder does not already contain a '.' or @"⁻"
+            if ( [numberBuilder rangeOfString:@"."].location == NSNotFound ||  [numberBuilder rangeOfString:@"⁻"].location == NSNotFound)
             {
+                //I can freely append the inputChar
                  numberBuilder = [numberBuilder stringByAppendingString:inputChar];
             }
             
             else if (![inputChar isEqualToString:@"."])
             {
+                //if it does contain a "." make sure not to add it.
                 numberBuilder = [numberBuilder stringByAppendingString:inputChar];
             }
            
             else if ([inputChar isEqualToString:@"."]){
+                //and set the syntax error.
                 numberBuilder = @"0";
                 self.syntaxError = @"Invalid Decimal";
             }
  
             
         }
-        //if inputChar is not an operator or function, nor could make a number
-        //input is bad
         
-        
-        //***** Note, why Im not checking for @" " it should not cause error most of the time, and be removed when appropriate.
-        
-        else 
+        else
         {
+            //if inputChar is not an operator or function, nor could make a number
+            //input is bad
+            
+            
+            //***** Note, why Im not checking for @" " it should not cause error most of the time, and be removed when appropriate.
+            //*** should this be done at the top or the bottom of the loop?
+            
             self.syntaxError = @"sytaxError, Bad input";
             numberBuilder = @"0";//why am I setting numberBulder to @"0" rather than @""
             NSLog(@"input char %@ numberbuilder %@",inputChar, numberBuilder);
@@ -211,21 +220,18 @@
     //add it to stack. (it could be soution.)
     if (![numberBuilder isEqualToString:@""])
     {
-        solution = numberBuilder;
-        [tokenized addObject:  [NSNumber numberWithDouble:[numberBuilder doubleValue]]] ;
-        numberBuilder = @"";
-    }
-
     
-        
-        
-        
+        [tokenized addObject: [NSNumber numberWithDouble:[numberBuilder doubleValue]]];
+    
+    }
+    
+
     // turn all tokens into token objects
     NSLog(@"tokenized preFlip %@", tokenized);
     while ([tokenized lastObject])
     {
         
-        [flippie addObject:[ShuntingToken newTokenFromObject:[tokenized objectAtIndex:0]]];
+        [flippie addObject:[IMShuntingToken newTokenFromObject:[tokenized objectAtIndex:0]]];
         [tokenized removeObjectAtIndex:0];
     }
     [tokenized addObjectsFromArray:flippie];
@@ -273,7 +279,7 @@
         //    If the token is an operator, o1, then:
         else if ([token precedence])
         {
-            //NSLog(@"operators in the Yard!!");
+            //NSLog(@"operators in the Yard");
    
             /*
              while there is an operator token, o2, at the top of the stack, and
@@ -328,7 +334,7 @@
             if (!peek == YES)
             {
                 NSLog(@"parenthesis are are unmatch");
-                self.syntaxError = @"misatched () parenthesis";
+                self.syntaxError = @"mismatched parenthesis ()";
             }
             
             //Pop the left parenthesis from the stack, but not onto the output queue.
@@ -350,11 +356,6 @@
         
         else self.syntaxError = @"unknown token";
         
-        
-        
-        
-        
-        
         //When there are no more tokens to read
         if ([tokenized count] == 1 )
         {
@@ -365,7 +366,7 @@
                 if ([[[stack lastObject] stringValue] isEqualToString:@")"] || [[[stack lastObject]stringValue] isEqualToString:@"("])
                 {
                     NSLog(@"mismatch ()() at end of tokens");
-                    self.syntaxError = @"mismatch () parenthesis";
+                    self.syntaxError = @"mismatched parenthesis () location 2";
                 }
                 //Pop the operator onto the output queue.
                 [outputQueue addObject:[stack lastObject]];
@@ -384,9 +385,6 @@
     
 
 
-
-
-
     NSLog(@"shuntingYardOutPut %@",outputQueue);
     ///turn into number for display. 
 
@@ -395,7 +393,7 @@
     while ([outputQueue lastObject])
     {
         double result = 0; 
-        NSLog(@"preformOperation");
+        NSLog(@"preformOperations");
         token = [outputQueue objectAtIndex:0];
         if ([token numberValue])
         {
@@ -420,6 +418,14 @@
 
         }
         
+        else if ([[token stringValue] isEqualToString: @"⁻"])
+        {
+            NSLog(@"⁻");
+            result = [[self popOperand]doubleValue] * -1.;
+            [self.operandStack addObject:  [NSNumber numberWithDouble: result]];
+            
+        }
+        
         else if ([[token stringValue] isEqualToString: @"-"])
         {
             NSLog(@"-");
@@ -441,16 +447,10 @@
         else if ([[token stringValue] isEqualToString: @"^"])
         {
             NSLog(@"^");
-            double exponate = [[self popOperand] intValue];
-            double base     = [[self popOperand] doubleValue];
-            result = base;
-            exponate--;
-            while (exponate)
-            {
-                result *= base;
-                exponate--;
-            }
-            [self.operandStack addObject:  [NSNumber numberWithDouble: result]];
+            double exponent = [[self popOperand] doubleValue];
+            double base = [[self popOperand] doubleValue];
+            
+            [self.operandStack addObject:[NSNumber numberWithDouble:pow(base, exponent)]];
             
         }
         else if ([[token stringValue] isEqualToString:@"SIN"])
@@ -484,7 +484,7 @@
         
     }
     
-    //the the operandStack contains more than one operand
+    //if the the operandStack contains more than one operand
     //something went wrong!! 
         
     if ([self.operandStack count] > 1 )
@@ -502,7 +502,7 @@
 
     else if ([self.operandStack objectAtIndex:0])
     {
-        solution = [[self.operandStack objectAtIndex:0]stringValue];
+        solution =  [[[self.operandStack objectAtIndex:0]stringValue] stringByReplacingOccurrencesOfString:@"-" withString:@"⁻"];
         NSLog(@"operand stack exits with values %@",[self.operandStack description]);
     }
     if ([self.operandStack objectAtIndex:0]) [self.operandStack removeAllObjects];

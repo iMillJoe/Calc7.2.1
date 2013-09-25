@@ -24,6 +24,17 @@
  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+
+
+
+
+//FIX CENTER METHOD
+
+
+
+
+
+
 #import "IMTriangle.h"
 
 
@@ -401,6 +412,14 @@
     return self.sideC;
 }
 
+-(CGPoint) center
+{
+    
+    //does not work yet. 
+    
+    return CGPointMake(0, 0);
+    
+}
 
 -(NSString *) description;
 {

@@ -1,5 +1,5 @@
 //
-//  CalculatorViewController.m
+//  IMCalculatorViewController.m
 //
 //  Created by Joseph Million on 3/2/12.
 /*
@@ -26,46 +26,37 @@
  */
 //
 
-#import "CalculatorViewController.h"
-#import "CalculatorBrain.h"
-
-
-
-
-
 
 /*
-To do list
+ To do list
  
  
  get better, and customized backdrop
- 
- 
- Build an array/store that is the expression and it's answer into that app,
- create a method that prints from this
- 
  spell check everything, I am a bad speller.
  
+ 
+ */
 
-*/
+#import "IMCalculatorViewController.h"
+#import "IMCalculatorBrain.h"
+
 
 //private API declarations.
-@interface CalculatorViewController()
+@interface IMCalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringAnExpression;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic, strong) NSString *numberString;
-@property (nonatomic, strong) NSArray *expressionHistory;
+@property (nonatomic, strong) NSString *lastAnswer;
 @end
 
 
-@implementation CalculatorViewController 
+@implementation IMCalculatorViewController
 @synthesize brain = _brain;
 @synthesize currentExpression = _currentExpression;
 @synthesize numberString = _numberString;
 @synthesize answerView = _answerView;
-
+@synthesize lastAnswer = _lastAnswer;
 @synthesize userIsInTheMiddleOfEnteringAnExpression =_userIsInTheMiddleOfEnteringAnExpression;
-
 
 -(CalculatorBrain *)brain
 {
@@ -74,22 +65,20 @@ To do list
 }
 
 
-
-///seperate digets pressed from operaters pressed... ie, if a number exists in the past display, and I hit  + - * or / i should the last display appended with *.... 
 - (IBAction)digitPressed:(UIButton *)sender 
 {
     NSString *digit = [sender currentTitle];
   
     if (self.userIsInTheMiddleOfEnteringAnExpression)
     {
-        self.currentExpression.text   = [self.currentExpression.text stringByAppendingString:digit];
+        self.currentExpression.text = [self.currentExpression.text stringByAppendingString:digit];
     }
-    else if (![[sender currentTitle] isEqualToString: @"0"])
+    else if (![digit isEqualToString: @"0"])
     {
         self.currentExpression.text   = digit;
         self.userIsInTheMiddleOfEnteringAnExpression = YES;
     }
-    [[UIDevice currentDevice] playInputClick];
+    [[UIDevice currentDevice] playInputClick]; /// WHY DOESN"T IT CLICK????? WHY WHY WHY.
     //NSLog(@"%@ pressed, ",digit);
     
 }
@@ -98,7 +87,7 @@ To do list
 {
     if (self.answerView.text && !self.userIsInTheMiddleOfEnteringAnExpression)
         {   
-            self.currentExpression.text = @"result of last expression appended with operator touched";
+            self.currentExpression.text = [self.lastAnswer stringByAppendingString:sender.currentTitle];
             
             self.userIsInTheMiddleOfEnteringAnExpression = YES;
         }
@@ -109,16 +98,11 @@ To do list
     [[UIDevice currentDevice] playInputClick];
 }
 
-
-
-
-
-
 - (IBAction)squarePressed
 {
     if (self.userIsInTheMiddleOfEnteringAnExpression == NO && [self.currentExpression.text isEqualToString:@"0"] ) 
     {
-        self.currentExpression.text = @"It is needed that put the Ans from last expession hear, appended by a square symbol";
+        self.currentExpression.text = self.lastAnswer;
         self.userIsInTheMiddleOfEnteringAnExpression = YES;
     }
     self.currentExpression.text = [self.currentExpression.text stringByAppendingString:@"²"];
@@ -138,7 +122,7 @@ To do list
 {
 
     self.userIsInTheMiddleOfEnteringAnExpression = NO;
-
+    self.lastAnswer = [self.brain evaluateExpression:self.currentExpression.text];
     self.answerView.text = [self.answerView.text stringByAppendingFormat:@"\r%@ = %@" , self.currentExpression.text , [self.brain evaluateExpression: self.currentExpression.text]];
     [self.answerView scrollRangeToVisible:NSMakeRange([self.answerView.text length], 0)];
     
@@ -152,7 +136,14 @@ To do list
 {
     if ([self.currentExpression.text length] > 0)
     {
-        self.currentExpression.text = [self.currentExpression.text substringToIndex: [self.currentExpression.text length] -1];
+        if (![self.currentExpression.text isEqualToString:@"0"]) {
+            self.currentExpression.text = [self.currentExpression.text substringToIndex: [self.currentExpression.text length] -1];
+        }
+        
+    }
+    if ([self.currentExpression.text isEqualToString:@""]) {
+        self.currentExpression.text = @"0";
+        self.userIsInTheMiddleOfEnteringAnExpression = NO;
     }
 }
 
@@ -161,39 +152,33 @@ To do list
     if ([self.currentExpression.text isEqualToString:@"0"])
     {
         self.answerView.text = @"";
+        self.lastAnswer=@"";
     }
     self.currentExpression.text = @"0";
     self.userIsInTheMiddleOfEnteringAnExpression=NO;
 }
 
+- (IBAction)negitivePressed {
+    
+    
+    if ([self.currentExpression.text hasSuffix:@"-"] || [self.currentExpression.text hasSuffix:@"+"] || [self.currentExpression.text hasSuffix:@"*"] || [self.currentExpression.text hasSuffix:@"/"] ) {
+        self.currentExpression.text = [self.currentExpression.text stringByAppendingString:@"⁻"]
+        ;
+    } else if ([self.currentExpression.text isEqualToString:@"0"]){
+        self.currentExpression.text = @"⁻";
+        self.userIsInTheMiddleOfEnteringAnExpression = YES;
+    }
+}
 
 - (IBAction)ansPresed
 {
-    if (![self.answerView.text isEqualToString:@""])
-    {
-        if ([self.answerView.text isEqualToString:@"0"] && self.answerView.text)
-        {
-            self.currentExpression.text = @"the Ans from the last Operaton";
-            self.userIsInTheMiddleOfEnteringAnExpression = YES;
+    if (self.lastAnswer) {
+        if ([self.currentExpression.text isEqualToString:@"0"]) {
+            self.currentExpression.text = self.lastAnswer;
         }
-
-        else if (self.answerView.text)
-        {
-            
-            /// I CLEARLY need to do something hear
-            
-             if ([[self.currentExpression.text substringFromIndex:[self.currentExpression.text length]-1] isEqualToString:@"*"] || [[self.currentExpression.text substringFromIndex:[self.currentExpression.text length]-1] isEqualToString:@"+"] || [[self.currentExpression.text substringFromIndex:[self.currentExpression.text length]-1] isEqualToString:@"/"] || [[self.currentExpression.text substringFromIndex:[self.currentExpression.text length]-1] isEqualToString:@"-"] ||[[self.currentExpression.text substringFromIndex:[self.currentExpression.text length]-1] isEqualToString:@"√"])
-            {
-                self.currentExpression.text = [self.currentExpression.text stringByAppendingString:@"result of last exxpretion"];
-                
-            }
-        }
-        else 
-        {
-            self.currentExpression.text = @"0";
-        }       
+        else self.currentExpression.text = [self.currentExpression.text stringByAppendingString:self.lastAnswer];
         
-    }           
+    }
 
 }
 
@@ -210,69 +195,9 @@ To do list
 
 }
 
-
-
-
-
-
-
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return NO;
 }
-
-
-
-
-/*- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)viewDidUnload
-{
-    [self setCurrentExpression:nil];
-    [self setResultOfLastExpression:nil];
-    [self setLastExpression:nil];
-    [self setResultOfSecondFromLastExpression:nil];
-    [self setSecondFromLastExpression:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
- */
-
-
 
 @end

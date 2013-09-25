@@ -1,5 +1,5 @@
 //
-//  ShuntingToken.m
+//  IMShuntingToken.m
 //
 //  Created by Joseph Million on 3/8/12.
 /*
@@ -26,9 +26,9 @@
  */
 //
 
-#import "ShuntingToken.h"
+#import "IMShuntingToken.h"
 
-@implementation ShuntingToken
+@implementation IMShuntingToken
 
 
 @synthesize isRightAssociative = _isRightAssociative;
@@ -40,9 +40,9 @@
 
 
 
-+(ShuntingToken *) newTokenFromObject: (id) input;
++(IMShuntingToken *) newTokenFromObject: (id) input;
 {
-    ShuntingToken *newToken = [[ShuntingToken alloc]init];
+    IMShuntingToken *newToken = [[IMShuntingToken alloc]init];
     
     if ([input isKindOfClass:[NSNumber class]])
     {
@@ -71,6 +71,13 @@
             newToken.precedence = 3;
             newToken.isRightAssociative = NO;
         }
+        
+        else if ([input isEqualToString:@"⁻"]){
+            newToken.precedence = 3;
+            newToken.isRightAssociative = YES;
+            
+        }
+        
         else if ([input isEqualToString:@"+"] || [input isEqualToString:@"-"])
         {
 
@@ -84,8 +91,8 @@
         }
         else 
         {
-            //redundant
-            newToken.description = input;
+            //redundant, perhaps an errror?
+            newToken.description = @"error";
         }
         
     }

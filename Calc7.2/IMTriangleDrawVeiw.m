@@ -1,5 +1,5 @@
 //
-//  TriangleDrawVeiw.m
+//  IMTriangleDrawVeiw.m
 //  Triangle Calculator
 //
 //  Created by Joseph Million on 5/12/12.
@@ -27,10 +27,10 @@
  */
 //
 
-#import "TriangleDrawVeiw.h"
+#import "IMTriangleDrawVeiw.h"
 
 
-@implementation TriangleDrawVeiw
+@implementation IMTriangleDrawVeiw
 
 @synthesize dataSource = _dataSource;
 
@@ -57,7 +57,6 @@
 }
 
 
-#define LINE_WIDTH 3.0
 
 
 - (void)drawRect:(CGRect)rect
@@ -108,7 +107,7 @@
     //get the currant drawing context, 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
-    CGContextSetLineWidth(ctx, LINE_WIDTH);
+    CGContextSetLineWidth(ctx, 3);
     [[UIColor blackColor] setStroke];
 
     //plot it's path

@@ -52,5 +52,6 @@
 -(double) perimeter;
 -(double) height;
 -(double) base;
+-(CGPoint) center;
 
 @end

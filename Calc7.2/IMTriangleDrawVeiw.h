@@ -1,8 +1,8 @@
 //
-//  CalculatorBrain.h
-//  Calculator3
+//  IMTriangleDrawVeiw.h
+//  Triangle Calculator
 //
-//  Created by Joseph Million on 3/2/12.
+//  Created by Joseph Million on 5/12/12.
 /*
  The MIT License (MIT)
  
@@ -27,14 +27,14 @@
  */
 //
 
-#import <Foundation/Foundation.h>
-#import "ShuntingToken.h"
+#import <UIKit/UIKit.h>
+#import "IMTriangle.h"
 
-@interface CalculatorBrain : NSObject
+@protocol IMTriangleDrawViewDataSource
+-(IMTriangle *) triangle;
+@end
 
-@property (nonatomic, strong) NSString *syntaxError;
-
--(NSString *) evaluateExpression: (NSString *) input;
-
+@interface IMTriangleDrawVeiw : UIView
+@property (nonatomic , weak) id <IMTriangleDrawViewDataSource> dataSource;
 
 @end

@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6012AF9F17AD988800A1C291 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AF9E17AD988800A1C291 /* CalculatorBrain.m */; };
-		6012AFA217AD989A00A1C291 /* ShuntingToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA117AD989A00A1C291 /* ShuntingToken.m */; };
-		6012AFA517AD98B500A1C291 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA417AD98B500A1C291 /* CalculatorViewController.m */; };
+		6012AF9F17AD988800A1C291 /* IMCalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AF9E17AD988800A1C291 /* IMCalculatorBrain.m */; };
+		6012AFA217AD989A00A1C291 /* IMShuntingToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA117AD989A00A1C291 /* IMShuntingToken.m */; };
+		6012AFA517AD98B500A1C291 /* IMCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */; };
 		6012AFA817ADA9D800A1C291 /* IMTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA717ADA9D800A1C291 /* IMTriangle.m */; };
-		6012AFAB17ADA9E200A1C291 /* TriangleDrawVeiw.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFAA17ADA9E200A1C291 /* TriangleDrawVeiw.m */; };
+		6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */; };
+		60DF738117B5B63900D539E4 /* IMTriCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DF738017B5B63900D539E4 /* IMTriCalcViewController.m */; };
 		60F8A8D017AB998E00B3D13F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8CF17AB998E00B3D13F /* Foundation.framework */; };
 		60F8A8D217AB998E00B3D13F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8D117AB998E00B3D13F /* CoreGraphics.framework */; };
 		60F8A8D417AB998E00B3D13F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8D317AB998E00B3D13F /* UIKit.framework */; };
@@ -19,8 +20,6 @@
 		60F8A8DC17AB998E00B3D13F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F8A8DB17AB998E00B3D13F /* main.m */; };
 		60F8A8E017AB998F00B3D13F /* IMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F8A8DF17AB998F00B3D13F /* IMAppDelegate.m */; };
 		60F8A8E317AB998F00B3D13F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F8A8E117AB998F00B3D13F /* Main.storyboard */; };
-		60F8A8E617AB998F00B3D13F /* IMFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F8A8E517AB998F00B3D13F /* IMFirstViewController.m */; };
-		60F8A8E917AB998F00B3D13F /* IMSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F8A8E817AB998F00B3D13F /* IMSecondViewController.m */; };
 		60F8A8EB17AB998F00B3D13F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F8A8EA17AB998F00B3D13F /* Images.xcassets */; };
 		60F8A8F217AB998F00B3D13F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8F117AB998F00B3D13F /* XCTest.framework */; };
 		60F8A8F317AB998F00B3D13F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8CF17AB998E00B3D13F /* Foundation.framework */; };
@@ -40,16 +39,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6012AF9D17AD988800A1C291 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
-		6012AF9E17AD988800A1C291 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
-		6012AFA017AD989A00A1C291 /* ShuntingToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuntingToken.h; sourceTree = "<group>"; };
-		6012AFA117AD989A00A1C291 /* ShuntingToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuntingToken.m; sourceTree = "<group>"; };
-		6012AFA317AD98B500A1C291 /* CalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
-		6012AFA417AD98B500A1C291 /* CalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
+		6012AF9D17AD988800A1C291 /* IMCalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCalculatorBrain.h; sourceTree = "<group>"; };
+		6012AF9E17AD988800A1C291 /* IMCalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCalculatorBrain.m; sourceTree = "<group>"; };
+		6012AFA017AD989A00A1C291 /* IMShuntingToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMShuntingToken.h; sourceTree = "<group>"; };
+		6012AFA117AD989A00A1C291 /* IMShuntingToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMShuntingToken.m; sourceTree = "<group>"; };
+		6012AFA317AD98B500A1C291 /* IMCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCalculatorViewController.h; sourceTree = "<group>"; };
+		6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCalculatorViewController.m; sourceTree = "<group>"; };
 		6012AFA617ADA9D800A1C291 /* IMTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriangle.h; sourceTree = "<group>"; };
 		6012AFA717ADA9D800A1C291 /* IMTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriangle.m; sourceTree = "<group>"; };
-		6012AFA917ADA9E200A1C291 /* TriangleDrawVeiw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleDrawVeiw.h; sourceTree = "<group>"; };
-		6012AFAA17ADA9E200A1C291 /* TriangleDrawVeiw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleDrawVeiw.m; sourceTree = "<group>"; };
+		6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriangleDrawVeiw.h; sourceTree = "<group>"; };
+		6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriangleDrawVeiw.m; sourceTree = "<group>"; };
+		60BA1C8217F17B7E0030559B /* IM Icon Red iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IM Icon Red iOS7.png"; sourceTree = "<group>"; };
+		60BA1C8317F17DAA0030559B /* IM Icon Green iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IM Icon Green iOS7.png"; sourceTree = "<group>"; };
+		60DF737F17B5B63900D539E4 /* IMTriCalcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMTriCalcViewController.h; path = "../../x-code files/Triangle Calculator/Triangle Calculator/IMTriCalcViewController.h"; sourceTree = "<group>"; };
+		60DF738017B5B63900D539E4 /* IMTriCalcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMTriCalcViewController.m; path = "../../x-code files/Triangle Calculator/Triangle Calculator/IMTriCalcViewController.m"; sourceTree = "<group>"; };
 		60F8A8CC17AB998E00B3D13F /* Calc7.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calc7.2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F8A8CF17AB998E00B3D13F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		60F8A8D117AB998E00B3D13F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,10 +64,6 @@
 		60F8A8DE17AB998E00B3D13F /* IMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMAppDelegate.h; sourceTree = "<group>"; };
 		60F8A8DF17AB998F00B3D13F /* IMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMAppDelegate.m; sourceTree = "<group>"; };
 		60F8A8E217AB998F00B3D13F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		60F8A8E417AB998F00B3D13F /* IMFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMFirstViewController.h; sourceTree = "<group>"; };
-		60F8A8E517AB998F00B3D13F /* IMFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMFirstViewController.m; sourceTree = "<group>"; };
-		60F8A8E717AB998F00B3D13F /* IMSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMSecondViewController.h; sourceTree = "<group>"; };
-		60F8A8E817AB998F00B3D13F /* IMSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMSecondViewController.m; sourceTree = "<group>"; };
 		60F8A8EA17AB998F00B3D13F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		60F8A8F017AB998F00B3D13F /* Calc7.2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Calc7.2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F8A8F117AB998F00B3D13F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -100,6 +99,8 @@
 		60F8A8C317AB998E00B3D13F = {
 			isa = PBXGroup;
 			children = (
+				60BA1C8317F17DAA0030559B /* IM Icon Green iOS7.png */,
+				60BA1C8217F17B7E0030559B /* IM Icon Red iOS7.png */,
 				60F8A8D517AB998E00B3D13F /* Calc7.2 */,
 				60F8A8F717AB998F00B3D13F /* Calc7.2Tests */,
 				60F8A8CE17AB998E00B3D13F /* Frameworks */,
@@ -133,20 +134,18 @@
 				60F8A8DE17AB998E00B3D13F /* IMAppDelegate.h */,
 				60F8A8DF17AB998F00B3D13F /* IMAppDelegate.m */,
 				60F8A8E117AB998F00B3D13F /* Main.storyboard */,
-				60F8A8E417AB998F00B3D13F /* IMFirstViewController.h */,
-				60F8A8E517AB998F00B3D13F /* IMFirstViewController.m */,
-				60F8A8E717AB998F00B3D13F /* IMSecondViewController.h */,
-				60F8A8E817AB998F00B3D13F /* IMSecondViewController.m */,
-				6012AF9D17AD988800A1C291 /* CalculatorBrain.h */,
-				6012AF9E17AD988800A1C291 /* CalculatorBrain.m */,
-				6012AFA017AD989A00A1C291 /* ShuntingToken.h */,
-				6012AFA117AD989A00A1C291 /* ShuntingToken.m */,
-				6012AFA317AD98B500A1C291 /* CalculatorViewController.h */,
-				6012AFA417AD98B500A1C291 /* CalculatorViewController.m */,
+				6012AF9D17AD988800A1C291 /* IMCalculatorBrain.h */,
+				6012AF9E17AD988800A1C291 /* IMCalculatorBrain.m */,
+				6012AFA017AD989A00A1C291 /* IMShuntingToken.h */,
+				6012AFA117AD989A00A1C291 /* IMShuntingToken.m */,
+				6012AFA317AD98B500A1C291 /* IMCalculatorViewController.h */,
+				6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */,
 				6012AFA617ADA9D800A1C291 /* IMTriangle.h */,
 				6012AFA717ADA9D800A1C291 /* IMTriangle.m */,
-				6012AFA917ADA9E200A1C291 /* TriangleDrawVeiw.h */,
-				6012AFAA17ADA9E200A1C291 /* TriangleDrawVeiw.m */,
+				60DF737F17B5B63900D539E4 /* IMTriCalcViewController.h */,
+				60DF738017B5B63900D539E4 /* IMTriCalcViewController.m */,
+				6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */,
+				6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */,
 				60F8A8EA17AB998F00B3D13F /* Images.xcassets */,
 				60F8A8D617AB998E00B3D13F /* Supporting Files */,
 			);
@@ -280,15 +279,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60F8A8E917AB998F00B3D13F /* IMSecondViewController.m in Sources */,
 				60F8A8E017AB998F00B3D13F /* IMAppDelegate.m in Sources */,
-				60F8A8E617AB998F00B3D13F /* IMFirstViewController.m in Sources */,
-				6012AFAB17ADA9E200A1C291 /* TriangleDrawVeiw.m in Sources */,
+				6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */,
 				6012AFA817ADA9D800A1C291 /* IMTriangle.m in Sources */,
-				6012AFA217AD989A00A1C291 /* ShuntingToken.m in Sources */,
+				6012AFA217AD989A00A1C291 /* IMShuntingToken.m in Sources */,
+				60DF738117B5B63900D539E4 /* IMTriCalcViewController.m in Sources */,
 				60F8A8DC17AB998E00B3D13F /* main.m in Sources */,
-				6012AF9F17AD988800A1C291 /* CalculatorBrain.m in Sources */,
-				6012AFA517AD98B500A1C291 /* CalculatorViewController.m in Sources */,
+				6012AF9F17AD988800A1C291 /* IMCalculatorBrain.m in Sources */,
+				6012AFA517AD98B500A1C291 /* IMCalculatorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +407,7 @@
 		60F8A90217AB999000B3D13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calc7.2/Calc7.2-Prefix.pch";
@@ -422,7 +420,7 @@
 		60F8A90317AB999000B3D13F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calc7.2/Calc7.2-Prefix.pch";

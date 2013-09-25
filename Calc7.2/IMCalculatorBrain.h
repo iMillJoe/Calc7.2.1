@@ -1,6 +1,5 @@
 //
-//  CalculatorViewController.h
-//  Calculator3
+//  CalculatorBrain.h
 //
 //  Created by Joseph Million on 3/2/12.
 /*
@@ -27,15 +26,13 @@
  */
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "IMShuntingToken.h"   //BUILD SHUNTING TOKEN INTO CALCULATOR BRAIN.
 
+@interface CalculatorBrain : NSObject
 
-@interface CalculatorViewController : UIViewController <UIInputViewAudioFeedback, UITextFieldDelegate>
+-(NSString *) evaluateExpression: (NSString *) input; //Returns an NSString, with a double or syntax error, for a given mathmatical expression in infixed foramt.
 
-@property (weak, nonatomic) IBOutlet UILabel *currentExpression;
-
-@property (weak, nonatomic) IBOutlet UITextView *answerView;
-
-
+@property (nonatomic, strong) NSString *syntaxError; //Should I really let others set my synataxError? Read only perhaps? 
 
 @end

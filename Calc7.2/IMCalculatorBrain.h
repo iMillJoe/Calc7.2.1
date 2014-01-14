@@ -33,6 +33,5 @@
 
 -(NSString *) evaluateExpression: (NSString *) input; //Returns an NSString, with a double or syntax error, for a given mathmatical expression in infixed foramt.
 
-@property (nonatomic, strong) NSString *syntaxError; //Should I really let others set my synataxError? Read only perhaps? 
-
+@property (nonatomic, strong, readonly) NSString *syntaxError; 
 @end

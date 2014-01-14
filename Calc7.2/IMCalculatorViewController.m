@@ -128,7 +128,7 @@
     
     self.currentExpression.text=@"0";//**** !! OR blinking curser !!
 
-    self.brain.syntaxError =  nil;
+    //self.brain.syntaxError =  nil;
 }
 
 

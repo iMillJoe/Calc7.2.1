@@ -29,9 +29,8 @@
 #import "IMCalculatorBrain.h"
 
 @interface CalculatorBrain()
-@property(nonatomic , strong) NSMutableArray *operandStack;
-
-
+@property(nonatomic, strong) NSMutableArray *operandStack;
+@property(nonatomic, strong, readwrite) NSString *syntaxError;
 @end
 
 @implementation CalculatorBrain
@@ -51,7 +50,7 @@
 -(NSNumber *)popOperand
 {
     NSNumber *operandObject = [self.operandStack lastObject];
-    NSLog(@"popped operand %@",operandObject);
+    //NSLog(@"popped operand %@",operandObject);
     if (operandObject) [self.operandStack removeLastObject];
     return operandObject;
     
@@ -83,18 +82,18 @@
         
         
     }
-    NSLog(@"input %@",input);
+    //NSLog(@"input %@",input);
     
     //wrap inputStack into an pretokenized Array. 
     while ([inputStack lastObject])
     {
-        NSLog(@"%@" ,numberBuilder);
+        //NSLog(@"%@" ,numberBuilder);
         inputChar = [inputStack objectAtIndex:0];
         //if inputChar is an operator or function
         if ([inputChar isEqualToString:@"*"] || [inputChar isEqualToString:@"/"] || [inputChar isEqualToString:@"-"] || [inputChar isEqualToString:@"+"] || [inputChar isEqualToString:@"S"] || [inputChar isEqualToString:@"C"] || [inputChar isEqualToString:@"T"] || [inputChar isEqualToString:@"("] || [inputChar isEqualToString:@")"] || [inputChar isEqualToString:@"π"] || [inputChar isEqualToString:@"√"] || [inputChar isEqualToString:@"²"] || [inputChar isEqualToString:@"⁻"] )
         {
             
-            NSLog(@"operator or function in input");
+           // NSLog(@"operator or function in input");
             
             //if numberBuilder is not blank, add token wrapped number to tokenized array.
             if (![numberBuilder isEqualToString:@""]) {
@@ -166,7 +165,7 @@
                     [tokenized addObject: @"*"];
                 }
                 [tokenized addObject: @"sqrt"];
-                NSLog(@"squareRoot");
+                //NSLog(@"squareRoot");
             }            
             else [tokenized addObject: inputChar];
             numberBuilder = @"";
@@ -210,7 +209,7 @@
             
             self.syntaxError = @"sytaxError, Bad input";
             numberBuilder = @"0";//why am I setting numberBulder to @"0" rather than @""
-            NSLog(@"input char %@ numberbuilder %@",inputChar, numberBuilder);
+            //NSLog(@"input char %@ numberbuilder %@",inputChar, numberBuilder);
         }
         [inputStack removeObjectAtIndex:0];
         
@@ -227,7 +226,7 @@
     
 
     // turn all tokens into token objects
-    NSLog(@"tokenized preFlip %@", tokenized);
+    //NSLog(@"tokenized preFlip %@", tokenized);
     while ([tokenized lastObject])
     {
         
@@ -241,7 +240,7 @@
     
     
 //***** tokenized should now be fixed, ONLY containg Token objects. ****//
-        NSLog(@"tokenized going into the yard %@",[tokenized description]);
+        NSLog(@"tokenized going into the yard %@", tokenized);
     
 // *** Shunting-yard ***
     
@@ -260,17 +259,17 @@
         //    If the token is a function token, then push it onto the stack.
         else if ([token isFunction])
         {
-            NSLog(@"function in Yard");
+            //NSLog(@"function in Yard");
             [stack addObject:token];
         }
         
         //If the token is a function argument separator (e.g., a comma):
         else if ([[token stringValue] isEqualToString:@","])
         {
-            NSLog(@"how the hell did a comma get to the shunting yard");
+            NSLog(@"how the hell did a comma get to the yard?");
             self.syntaxError = @"how did a comma get in the yard";
             
-            // THIS PART OF THE YARD STILL NEEDS BUILT, BUT IT HAS NO USE IN THIS APP AT THE MOMENT
+            // THIS PART OF THE YARD STILL NEEDS BUILT, BUT IT HAS NO USE AT THE MOMENT
             
             //Until the token at the top of the stack is a left parenthesis, pop operators off the stack onto the output queue. If no left parentheses are encountered, either the separator was misplaced or parentheses were mismatched.
         }
@@ -333,7 +332,7 @@
             //If the stack runs out without finding a left parenthesis, then there are mismatched parentheses
             if (!peek == YES)
             {
-                NSLog(@"parenthesis are are unmatch");
+                //NSLog(@"parenthesis are are unmatch");
                 self.syntaxError = @"mismatched parenthesis ()";
             }
             
@@ -365,7 +364,7 @@
                 //If the operator token on the top of the stack is a parenthesis, then there are mismatched parentheses
                 if ([[[stack lastObject] stringValue] isEqualToString:@")"] || [[[stack lastObject]stringValue] isEqualToString:@"("])
                 {
-                    NSLog(@"mismatch ()() at end of tokens");
+                    //NSLog(@"mismatch ()() at end of tokens");
                     self.syntaxError = @"mismatched parenthesis () location 2";
                 }
                 //Pop the operator onto the output queue.
@@ -385,7 +384,7 @@
     
 
 
-    NSLog(@"shuntingYardOutPut %@",outputQueue);
+    //NSLog(@"shuntingYardOutPut %@",outputQueue);
     ///turn into number for display. 
 
     //while the ouputQueue has objects
@@ -393,7 +392,7 @@
     while ([outputQueue lastObject])
     {
         double result = 0; 
-        NSLog(@"preformOperations");
+        //NSLog(@"preformOperations");
         token = [outputQueue objectAtIndex:0];
         if ([token numberValue])
         {
@@ -404,7 +403,7 @@
         
         if ([[token stringValue] isEqualToString: @"+"])
         {
-            NSLog(@"+");
+            //NSLog(@"+");
             result = [[self popOperand]doubleValue] + [[self popOperand]doubleValue];
             [self.operandStack addObject:  [NSNumber numberWithDouble: result]];
             
@@ -412,7 +411,7 @@
         
         else if ([[token stringValue] isEqualToString: @"*"])
         {
-            NSLog(@"*");
+            //NSLog(@"*");
             result = [[self popOperand]doubleValue] * [[self popOperand]doubleValue];
             [self.operandStack addObject:  [NSNumber numberWithDouble: result]];
 
@@ -420,7 +419,7 @@
         
         else if ([[token stringValue] isEqualToString: @"⁻"])
         {
-            NSLog(@"⁻");
+            //NSLog(@"⁻");
             result = [[self popOperand]doubleValue] * -1.;
             [self.operandStack addObject:  [NSNumber numberWithDouble: result]];
             
@@ -428,7 +427,7 @@
         
         else if ([[token stringValue] isEqualToString: @"-"])
         {
-            NSLog(@"-");
+            //NSLog(@"-");
             double subtrahend = [[self popOperand] doubleValue];
             result = [[self popOperand]doubleValue] - subtrahend;
             [self.operandStack addObject:  [NSNumber numberWithDouble: result]];
@@ -437,7 +436,7 @@
         
         else if ([[token stringValue] isEqualToString: @"/"])
         {
-            NSLog(@"/");
+            //NSLog(@"/");
             double divisor = [[self popOperand]doubleValue];
             if (!divisor) self.syntaxError = @"You should not attempt to divide by zero";
             else result =  [[self popOperand]doubleValue] / divisor ;
@@ -446,7 +445,7 @@
         
         else if ([[token stringValue] isEqualToString: @"^"])
         {
-            NSLog(@"^");
+            //NSLog(@"^");
             double exponent = [[self popOperand] doubleValue];
             double base = [[self popOperand] doubleValue];
             
@@ -470,7 +469,7 @@
         }
         else if ([[token stringValue] isEqualToString: @"sqrt"])
         {
-            NSLog(@"sqrt");
+            //NSLog(@"sqrt");
             double base  = [[self popOperand] doubleValue];
             base = sqrt(base);
             [self.operandStack addObject:[NSNumber numberWithDouble:base]];
@@ -506,6 +505,7 @@
         NSLog(@"operand stack exits with values %@",[self.operandStack description]);
     }
     if ([self.operandStack objectAtIndex:0]) [self.operandStack removeAllObjects];
+    self.syntaxError = nil;
     return solution; 
     
 }

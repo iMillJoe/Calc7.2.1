@@ -85,15 +85,20 @@
 
 - (IBAction)OperatorPressed:(UIButton *)sender 
 {
-    if (self.answerView.text && !self.userIsInTheMiddleOfEnteringAnExpression)
-        {   
-            self.currentExpression.text = [self.lastAnswer stringByAppendingString:sender.currentTitle];
-            
-            self.userIsInTheMiddleOfEnteringAnExpression = YES;
+    if (self.answerView.text && !self.userIsInTheMiddleOfEnteringAnExpression )
+        {
+            if ([self.lastAnswer doubleValue])
+            {
+                
+                self.currentExpression.text = self.lastAnswer;
+                self.userIsInTheMiddleOfEnteringAnExpression = YES;
+        
+            }
         }
-    else 
+    if (!([self.currentExpression.text hasSuffix:@"-"] || [self.currentExpression.text hasSuffix:@"+"] ||
+             [self.currentExpression.text hasSuffix:@"*"] || [self.currentExpression.text hasSuffix:@"/"]) )
     {
-        self.currentExpression.text = [self.currentExpression.text stringByAppendingString:sender.currentTitle];
+        self.currentExpression.text = [self.currentExpression.text stringByAppendingString: sender.currentTitle];
     } 
     [[UIDevice currentDevice] playInputClick];
 }
@@ -161,10 +166,14 @@
 - (IBAction)negitivePressed {
     
     
-    if ([self.currentExpression.text hasSuffix:@"-"] || [self.currentExpression.text hasSuffix:@"+"] || [self.currentExpression.text hasSuffix:@"*"] || [self.currentExpression.text hasSuffix:@"/"] ) {
-        self.currentExpression.text = [self.currentExpression.text stringByAppendingString:@"⁻"]
-        ;
-    } else if ([self.currentExpression.text isEqualToString:@"0"]){
+    if ([self.currentExpression.text hasSuffix:@"-"] || [self.currentExpression.text hasSuffix:@"+"] ||
+        [self.currentExpression.text hasSuffix:@"*"] || [self.currentExpression.text hasSuffix:@"/"] )
+    {
+        self.currentExpression.text = [self.currentExpression.text stringByAppendingString:@"⁻"];
+    }
+    
+    else if ([self.currentExpression.text isEqualToString:@"0"])
+    {
         self.currentExpression.text = @"⁻";
         self.userIsInTheMiddleOfEnteringAnExpression = YES;
     }

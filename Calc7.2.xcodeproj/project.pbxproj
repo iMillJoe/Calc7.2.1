@@ -50,8 +50,6 @@
 		6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriangleDrawVeiw.h; sourceTree = "<group>"; };
 		6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriangleDrawVeiw.m; sourceTree = "<group>"; };
 		60AB3B5117F64BDB00F91BC0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		60BA1C8217F17B7E0030559B /* IM Icon Red iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IM Icon Red iOS7.png"; sourceTree = "<group>"; };
-		60BA1C8317F17DAA0030559B /* IM Icon Green iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IM Icon Green iOS7.png"; sourceTree = "<group>"; };
 		60DF737F17B5B63900D539E4 /* IMTriCalcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMTriCalcViewController.h; path = "../../x-code files/Triangle Calculator/Triangle Calculator/IMTriCalcViewController.h"; sourceTree = "<group>"; };
 		60DF738017B5B63900D539E4 /* IMTriCalcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMTriCalcViewController.m; path = "../../x-code files/Triangle Calculator/Triangle Calculator/IMTriCalcViewController.m"; sourceTree = "<group>"; };
 		60F8A8CC17AB998E00B3D13F /* Calc7.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calc7.2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,8 +97,6 @@
 		60F8A8C317AB998E00B3D13F = {
 			isa = PBXGroup;
 			children = (
-				60BA1C8317F17DAA0030559B /* IM Icon Green iOS7.png */,
-				60BA1C8217F17B7E0030559B /* IM Icon Red iOS7.png */,
 				60F8A8D517AB998E00B3D13F /* Calc7.2 */,
 				60F8A8F717AB998F00B3D13F /* Calc7.2Tests */,
 				60F8A8CE17AB998E00B3D13F /* Frameworks */,

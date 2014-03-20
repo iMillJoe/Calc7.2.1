@@ -13,6 +13,7 @@
 
 @interface IMTriCalcViewController : UIViewController <UITextFieldDelegate>
 
+
 @property (strong, nonatomic) IMTriangle *triangle;
 
 @property (weak, nonatomic) IBOutlet UITextField *textVeiwSideA;

@@ -12,8 +12,8 @@
 		6012AFA517AD98B500A1C291 /* IMCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */; };
 		6012AFA817ADA9D800A1C291 /* IMTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA717ADA9D800A1C291 /* IMTriangle.m */; };
 		6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */; };
-		60AB3B5217F64BDB00F91BC0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60AB3B5117F64BDB00F91BC0 /* Images.xcassets */; };
-		60DF738117B5B63900D539E4 /* IMTriCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DF738017B5B63900D539E4 /* IMTriCalcViewController.m */; };
+		6072540F18DBA2E700DF4590 /* IMTriCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */; };
+		60E3F07018DBA7B500890216 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60E3F06F18DBA7B500890216 /* Images.xcassets */; };
 		60F8A8D017AB998E00B3D13F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8CF17AB998E00B3D13F /* Foundation.framework */; };
 		60F8A8D217AB998E00B3D13F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8D117AB998E00B3D13F /* CoreGraphics.framework */; };
 		60F8A8D417AB998E00B3D13F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8D317AB998E00B3D13F /* UIKit.framework */; };
@@ -49,9 +49,9 @@
 		6012AFA717ADA9D800A1C291 /* IMTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriangle.m; sourceTree = "<group>"; };
 		6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriangleDrawVeiw.h; sourceTree = "<group>"; };
 		6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriangleDrawVeiw.m; sourceTree = "<group>"; };
-		60AB3B5117F64BDB00F91BC0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		60DF737F17B5B63900D539E4 /* IMTriCalcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMTriCalcViewController.h; path = "../../x-code files/Triangle Calculator/Triangle Calculator/IMTriCalcViewController.h"; sourceTree = "<group>"; };
-		60DF738017B5B63900D539E4 /* IMTriCalcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMTriCalcViewController.m; path = "../../x-code files/Triangle Calculator/Triangle Calculator/IMTriCalcViewController.m"; sourceTree = "<group>"; };
+		6072540D18DBA2E700DF4590 /* IMTriCalcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriCalcViewController.h; sourceTree = "<group>"; };
+		6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriCalcViewController.m; sourceTree = "<group>"; };
+		60E3F06F18DBA7B500890216 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		60F8A8CC17AB998E00B3D13F /* Calc7.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calc7.2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F8A8CF17AB998E00B3D13F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		60F8A8D117AB998E00B3D13F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,11 +138,11 @@
 				6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */,
 				6012AFA617ADA9D800A1C291 /* IMTriangle.h */,
 				6012AFA717ADA9D800A1C291 /* IMTriangle.m */,
-				60DF737F17B5B63900D539E4 /* IMTriCalcViewController.h */,
-				60DF738017B5B63900D539E4 /* IMTriCalcViewController.m */,
+				6072540D18DBA2E700DF4590 /* IMTriCalcViewController.h */,
+				6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */,
 				6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */,
 				6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */,
-				60AB3B5117F64BDB00F91BC0 /* Images.xcassets */,
+				60E3F06F18DBA7B500890216 /* Images.xcassets */,
 				60F8A8D617AB998E00B3D13F /* Supporting Files */,
 			);
 			path = Calc7.2;
@@ -254,7 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60AB3B5217F64BDB00F91BC0 /* Images.xcassets in Resources */,
+				60E3F07018DBA7B500890216 /* Images.xcassets in Resources */,
 				60F8A8DA17AB998E00B3D13F /* InfoPlist.strings in Resources */,
 				60F8A8E317AB998F00B3D13F /* Main.storyboard in Resources */,
 			);
@@ -278,8 +278,8 @@
 				60F8A8E017AB998F00B3D13F /* IMAppDelegate.m in Sources */,
 				6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */,
 				6012AFA817ADA9D800A1C291 /* IMTriangle.m in Sources */,
+				6072540F18DBA2E700DF4590 /* IMTriCalcViewController.m in Sources */,
 				6012AFA217AD989A00A1C291 /* IMShuntingToken.m in Sources */,
-				60DF738117B5B63900D539E4 /* IMTriCalcViewController.m in Sources */,
 				60F8A8DC17AB998E00B3D13F /* main.m in Sources */,
 				6012AF9F17AD988800A1C291 /* IMCalculatorBrain.m in Sources */,
 				6012AFA517AD98B500A1C291 /* IMCalculatorViewController.m in Sources */,

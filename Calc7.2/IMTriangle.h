@@ -31,16 +31,19 @@
 
 
 
-@property double sideA, sideB, sideC, angleA, angleB, angleC; //The things you would expect a triangle to have
-@property double angleOfRotation; //Angle side C is rotated from X (positive) axis, increasing in CCW direction.
-@property BOOL shouldUseDegrees; // set to YES for degrees, (my preferred measure of angles)
-//perhaps a CGPoint for center? 
+@property double sideA, sideB, sideC, angleA, angleB, angleC; // The things you would expect a triangle to have
 
+@property double angleOfRotation; // Angle side C is rotated from X (positive) axis, increasing in CCW direction.
+
+@property BOOL shouldUseDegrees; // set to YES for degrees, (my preferred measure of angles)
 
 //init methods, initWithIMTriangle: is the designated init
 -(id) initWithTriangle: (IMTriangle*) triangle;
+
 -(id) initFromThreeSidesWithSideA: (double)sideA sideB:(double)sideB  andSideC:(double)sideC usingDegrees: (BOOL) degrees;
+
 -(id) initFromSideAngleSideWithAngleA: (double)angleA sideB:(double)sideB  andSideC:(double)sideC usingDegrees:(BOOL)degrees;
+
 -(id) initFromAngleSideAngleWithAngleA: (double)angleA sideB:(double)sideB andAngleC:(double)angleC usingDegrees:(BOOL)degrees;
 
 
@@ -52,6 +55,6 @@
 -(double) perimeter;
 -(double) height;
 -(double) base;
--(CGPoint) center;
+-(CGPoint) center; //Not currently functional
 
 @end

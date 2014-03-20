@@ -168,7 +168,8 @@
     
     if ([self.currentExpression.text hasSuffix:@"-"] || [self.currentExpression.text hasSuffix:@"+"] ||
         [self.currentExpression.text hasSuffix:@"*"] || [self.currentExpression.text hasSuffix:@"/"] ||
-        [self.currentExpression.text hasSuffix:@")"])
+        [self.currentExpression.text hasSuffix:@"("] || [self.currentExpression.text hasSuffix:@"√"] ||
+        [self.currentExpression.text hasSuffix:@"N"] || [self.currentExpression.text hasSuffix:@"S"])
     {
         self.currentExpression.text = [self.currentExpression.text stringByAppendingString:@"⁻"];
     }

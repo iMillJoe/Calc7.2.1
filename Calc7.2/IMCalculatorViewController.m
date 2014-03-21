@@ -127,8 +127,9 @@
 {
 
     self.userIsInTheMiddleOfEnteringAnExpression = NO;
-    self.lastAnswer = [self.brain evaluateExpression:self.currentExpression.text];
-    self.answerView.text = [self.answerView.text stringByAppendingFormat:@"\r%@ = %@" , self.currentExpression.text , [self.brain evaluateExpression: self.currentExpression.text]];
+    NSString* ans = [self.brain evaluateExpression:self.currentExpression.text];
+    self.lastAnswer = ans;
+    self.answerView.text = [self.answerView.text stringByAppendingFormat:@"\r%@ = %@" , self.currentExpression.text , ans ];
     [self.answerView scrollRangeToVisible:NSMakeRange([self.answerView.text length], 0)];
     
     self.currentExpression.text=@"0";//**** !! OR blinking curser !!

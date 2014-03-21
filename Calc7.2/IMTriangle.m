@@ -414,7 +414,6 @@
 
 -(CGPoint) center
 {
-    
     //does not work yet. 
     
     return CGPointMake(0, 0);

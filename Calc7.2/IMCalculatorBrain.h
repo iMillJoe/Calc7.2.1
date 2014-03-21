@@ -33,5 +33,6 @@
 
 -(NSString *) evaluateExpression: (NSString *) input; //Returns an NSString, with a double or syntax error, for a given mathmatical expression in infixed foramt.
 
-@property (nonatomic, strong, readonly) NSString *syntaxError; 
+@property (nonatomic, strong, readonly) NSString *syntaxError;
+
 @end

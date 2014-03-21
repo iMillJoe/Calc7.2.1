@@ -94,6 +94,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60E3F07118DBC82E00890216 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6012AFA717ADA9D800A1C291 /* IMTriangle.m */,
+				6012AFA617ADA9D800A1C291 /* IMTriangle.h */,
+				6012AFA117AD989A00A1C291 /* IMShuntingToken.m */,
+				6012AFA017AD989A00A1C291 /* IMShuntingToken.h */,
+				6012AF9D17AD988800A1C291 /* IMCalculatorBrain.h */,
+				6012AF9E17AD988800A1C291 /* IMCalculatorBrain.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		60E3F07218DBC84700890216 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				60E3F06F18DBA7B500890216 /* Images.xcassets */,
+				60F8A8E117AB998F00B3D13F /* Main.storyboard */,
+				6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		60E3F07318DBC85F00890216 /* Conrtroller */ = {
+			isa = PBXGroup;
+			children = (
+				6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */,
+				6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */,
+				6072540D18DBA2E700DF4590 /* IMTriCalcViewController.h */,
+				6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */,
+				6012AFA317AD98B500A1C291 /* IMCalculatorViewController.h */,
+			);
+			name = Conrtroller;
+			sourceTree = "<group>";
+		};
 		60F8A8C317AB998E00B3D13F = {
 			isa = PBXGroup;
 			children = (
@@ -127,22 +162,9 @@
 		60F8A8D517AB998E00B3D13F /* Calc7.2 */ = {
 			isa = PBXGroup;
 			children = (
-				60F8A8DE17AB998E00B3D13F /* IMAppDelegate.h */,
-				60F8A8DF17AB998F00B3D13F /* IMAppDelegate.m */,
-				60F8A8E117AB998F00B3D13F /* Main.storyboard */,
-				6012AF9D17AD988800A1C291 /* IMCalculatorBrain.h */,
-				6012AF9E17AD988800A1C291 /* IMCalculatorBrain.m */,
-				6012AFA017AD989A00A1C291 /* IMShuntingToken.h */,
-				6012AFA117AD989A00A1C291 /* IMShuntingToken.m */,
-				6012AFA317AD98B500A1C291 /* IMCalculatorViewController.h */,
-				6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */,
-				6012AFA617ADA9D800A1C291 /* IMTriangle.h */,
-				6012AFA717ADA9D800A1C291 /* IMTriangle.m */,
-				6072540D18DBA2E700DF4590 /* IMTriCalcViewController.h */,
-				6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */,
-				6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */,
-				6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */,
-				60E3F06F18DBA7B500890216 /* Images.xcassets */,
+				60E3F07118DBC82E00890216 /* Model */,
+				60E3F07218DBC84700890216 /* View */,
+				60E3F07318DBC85F00890216 /* Conrtroller */,
 				60F8A8D617AB998E00B3D13F /* Supporting Files */,
 			);
 			path = Calc7.2;
@@ -151,7 +173,9 @@
 		60F8A8D617AB998E00B3D13F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				60F8A8DF17AB998F00B3D13F /* IMAppDelegate.m */,
 				60F8A8D717AB998E00B3D13F /* Calc7.2-Info.plist */,
+				60F8A8DE17AB998E00B3D13F /* IMAppDelegate.h */,
 				60F8A8D817AB998E00B3D13F /* InfoPlist.strings */,
 				60F8A8DB17AB998E00B3D13F /* main.m */,
 				60F8A8DD17AB998E00B3D13F /* Calc7.2-Prefix.pch */,

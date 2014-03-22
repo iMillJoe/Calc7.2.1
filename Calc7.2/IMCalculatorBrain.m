@@ -365,7 +365,7 @@
                 if ([[[stack lastObject] stringValue] isEqualToString:@")"] || [[[stack lastObject]stringValue] isEqualToString:@"("])
                 {
                     //NSLog(@"mismatch ()() at end of tokens");
-                    self.syntaxError = @"mismatched parenthesis () location 2";
+                    self.syntaxError = [NSString stringWithFormat:@"extra '%@' " , [[stack lastObject] stringValue]];
                 }
                 //Pop the operator onto the output queue.
                 [outputQueue addObject:[stack lastObject]];

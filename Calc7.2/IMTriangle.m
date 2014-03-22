@@ -36,12 +36,14 @@
 
 
 #import "IMTriangle.h"
+#import "IMCircle.h"
 
 
 //private declarations
 @interface IMTriangle()
 @property BOOL solved; //Is this triangle solved completely?
-@property NSString *error; //Error message 
+@property NSString *error; //Error message
+@property (nonatomic, strong) IMCircle* circle;
 @end
 
 @implementation IMTriangle
@@ -52,10 +54,14 @@
 @synthesize angleA                      =_angleA;
 @synthesize angleB                      =_angleB;
 @synthesize angleC                      =_angleC;
+@synthesize pointA                      =_pointA;
+@synthesize pointB                      =_pointB;
+@synthesize pointC                      =_pointC;
 @synthesize shouldUseDegrees            =_shouldUseDegrees;
 @synthesize angleOfRotation             =_angleOfRotation;
 @synthesize solved                      =_solved;
 @synthesize error                       =_error;
+@synthesize circle                      =_circle;
 
 
 
@@ -148,6 +154,35 @@
     }
 }
 
+
+-(id) initFromThreePointsWithPointA: (CGPoint)pointA pointB: (CGPoint)pointB andPointC: (CGPoint)pointC usingDegrees:(BOOL)degrees
+{
+    
+    
+    self.pointA = pointA, self.pointB = pointB, self.pointC = pointC;
+    
+    NSLog(@"cicumDia: %f", [self circumDiameter]);
+    
+    /*
+     
+     The Cartesian coordinates of the circumcenter are
+     
+     U_x = ((A_x^2 + A_y^2)(B_y - C_y) + (B_x^2 + B_y^2)(C_y - A_y) + (C_x^2 + C_y^2)(A_y - B_y)) / D,
+     U_y = ((A_x^2 + A_y^2)(C_x - B_x) + (B_x^2 + B_y^2)(A_x - C_x) + (C_x^2 + C_y^2)(B_x - A_x)) / D
+     
+     with
+     D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y)).\,
+     
+     
+     
+     
+     */
+    
+    
+    
+    
+    return nil;
+}
 
 #pragma mark solve
 
@@ -378,6 +413,25 @@
 }
 
 #pragma mark convenience methods
+
+//**********************************************
+-(double) circumDiameter
+{
+    //D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y))
+    return 2 * ((self.pointA.x * (self.pointB.y - self.pointC.y)) +
+                (self.pointB.x * (self.pointC.y - self.pointA.y)) +
+                (self.pointC.x * (self.pointA.y - self.pointB.y)));
+             
+    
+    
+    return 0;
+}
+
+-(CGPoint) circumCenter
+{
+    return CGPointMake(0, 0);
+}
+//**********************************************
 
 -(double) height
 {

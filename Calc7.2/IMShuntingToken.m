@@ -72,7 +72,8 @@
             newToken.isRightAssociative = NO;
         }
         
-        else if ([input isEqualToString:@"⁻"]){
+        else if ([input isEqualToString:@"⁻"])
+        {
             newToken.precedence = 3;
             newToken.isRightAssociative = YES;
             
@@ -100,6 +101,7 @@
 
     
     if (newToken.precedence) newToken.description = [newToken.description stringByAppendingFormat:@" precidence = %i rightAssociative= %i", newToken.precedence , newToken.isRightAssociative];
+    
     return newToken;
 }
 @end

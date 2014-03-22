@@ -32,10 +32,13 @@
 
 
 @property double sideA, sideB, sideC, angleA, angleB, angleC; // The things you would expect a triangle to have
+@property CGPoint pointA, pointB, pointC;
 
 @property double angleOfRotation; // Angle side C is rotated from X (positive) axis, increasing in CCW direction.
 
 @property BOOL shouldUseDegrees; // set to YES for degrees, (my preferred measure of angles)
+
+
 
 //init methods, initWithIMTriangle: is the designated init
 -(id) initWithTriangle: (IMTriangle*) triangle;
@@ -46,6 +49,9 @@
 
 -(id) initFromAngleSideAngleWithAngleA: (double)angleA sideB:(double)sideB andAngleC:(double)angleC usingDegrees:(BOOL)degrees;
 
+-(id) initFromThreePointsWithPointA: (CGPoint)pointA pointB: (CGPoint)pointB andPointC: (CGPoint)pointC usingDegrees:(BOOL)degrees;
+
+
 
 //solve method figures out the data it can from the users input
 -(void) solve;
@@ -55,6 +61,7 @@
 -(double) perimeter;
 -(double) height;
 -(double) base;
--(CGPoint) center; //Not currently functional
+-(double) circumDiameter; // the diameter of it's circumcircle
+-(CGPoint) circumCenter; // center of the circumcurcle
 
 @end

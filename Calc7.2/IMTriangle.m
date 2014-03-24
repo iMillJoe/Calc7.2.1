@@ -158,6 +158,11 @@
 -(id) initFromThreePointsWithPointA: (CGPoint)pointA pointB: (CGPoint)pointB andPointC: (CGPoint)pointC usingDegrees:(BOOL)degrees
 {
     
+    /*
+      YOU WILL FIND THIS WEBSITE HELPFULL
+     http://www.endmemo.com/geometry/triangle.php
+     */
+    
     // Store args to instance vars.
     self.pointA = pointA, self.pointB = pointB, self.pointC = pointC;
     
@@ -189,8 +194,8 @@
     
     
     // ..sideB
-    double sideBDeltaX = ( fabs(pointA.x - pointC.y) );
-    double sideBDeltaY = ( fabs(pointC.y) - pointA.y );
+    double sideBDeltaX = ( fabs(pointA.x - pointC.x) );
+    double sideBDeltaY = ( fabs(pointC.y - pointA.y) );
     
     if (sideBDeltaX == 0) {
         if (!sideBDeltaY == 0)
@@ -221,7 +226,7 @@
     {
         if (! sideCDeltaY == 0)
         {
-            self.sideB = sideCDeltaY;
+            self.sideC = sideCDeltaY;
         }
         else
         {

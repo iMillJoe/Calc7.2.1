@@ -158,30 +158,88 @@
 -(id) initFromThreePointsWithPointA: (CGPoint)pointA pointB: (CGPoint)pointB andPointC: (CGPoint)pointC usingDegrees:(BOOL)degrees
 {
     
-    
+    // Store args to instance vars.
     self.pointA = pointA, self.pointB = pointB, self.pointC = pointC;
     
-    NSLog(@"cicumDia: %f", [self circumDiameter]);
+    // Find lenth of sideA
+    double sideADeltaX = fabs(pointB.x - pointC.x);
+    double sideADeltaY = fabs(pointC.y - pointB.y);
     
-    /*
-     
-     The Cartesian coordinates of the circumcenter are
-     
-     U_x = ((A_x^2 + A_y^2)(B_y - C_y) + (B_x^2 + B_y^2)(C_y - A_y) + (C_x^2 + C_y^2)(A_y - B_y)) / D,
-     U_y = ((A_x^2 + A_y^2)(C_x - B_x) + (B_x^2 + B_y^2)(A_x - C_x) + (C_x^2 + C_y^2)(B_x - A_x)) / D
-     
-     with
-     D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y)).\,
-     
-     
-     
-     
-     */
+    if (sideADeltaX == 0)
+    {
+        if (! sideADeltaY == 0) {
+            self.sideA = sideADeltaY;
+        }
+        else
+        {
+            NSLog(@"Don't use the same points");
+        }
+    }
+    else if (sideADeltaY == 0)
+    {
+        self.sideA = sideADeltaX;
+    }
+    else
+    {
+        
+        self.sideA = ( sqrt( (sideADeltaX * sideADeltaX) + (sideADeltaY * sideADeltaY)) );
+    }
+    
+    NSLog(@"sideADeltaX: %f sideADeltaY: %f sideA %f",sideADeltaX, sideADeltaY, self.sideA);
     
     
+    // ..sideB
+    double sideBDeltaX = ( fabs(pointA.x - pointC.y) );
+    double sideBDeltaY = ( fabs(pointC.y) - pointA.y );
     
+    if (sideBDeltaX == 0) {
+        if (!sideBDeltaY == 0)
+        {
+            self.sideB = sideBDeltaY;
+        }
+        else
+        {
+            NSLog(@"don't use the same points");
+        }
+    }
+    else if (sideBDeltaY == 0)
+    {
+        self.sideB = sideBDeltaX;
+    }
+    else
+    {
+        self.sideB = (sqrt( (sideBDeltaX * sideBDeltaX) + (sideBDeltaY * sideBDeltaY)) );
+    }
     
-    return nil;
+    NSLog(@"sideBDeltaX: %f sideBDeltaY: %f sideB %f", sideBDeltaX, sideBDeltaY, self.sideB);
+    
+    // .. sideC
+    double sideCDeltaX = ( fabs(pointB.x - pointA.x) );
+    double sideCDeltaY = ( fabs(pointA.y - pointB.y) );
+    
+    if (sideCDeltaX == 0)
+    {
+        if (! sideCDeltaY == 0)
+        {
+            self.sideB = sideCDeltaY;
+        }
+        else
+        {
+            NSLog(@"don't use the same points");
+        }
+    }
+    else
+    {
+        self.sideC = (sqrt( (sideCDeltaX * sideCDeltaX) + (sideCDeltaY * sideCDeltaY)) );
+    }
+    
+    NSLog(@"sideCDeltaX: %f sideCDeltaY: %f sideC %f",sideCDeltaX, sideCDeltaY, self.sideC);
+    
+    [self solve];
+    
+    NSLog(@"%@", self);
+    
+    return self;
 }
 
 #pragma mark solve
@@ -418,17 +476,36 @@
 -(double) circumDiameter
 {
     //D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y))
-    return 2 * ((self.pointA.x * (self.pointB.y - self.pointC.y)) +
-                (self.pointB.x * (self.pointC.y - self.pointA.y)) +
-                (self.pointC.x * (self.pointA.y - self.pointB.y)));
-             
     
+    if (self.solved) {
+        return ( (self.sideA * self.sideB * self.sideC) /
+                (sqrt( (self.sideA + self.sideB + self.sideC) *
+                       (self.sideB + self.sideC - self.sideA) *
+                       (self.sideC + self.sideA - self.sideB) *
+                       (self.sideA + self.sideB - self.sideC)   ) ));
+    }
     
     return 0;
 }
 
 -(CGPoint) circumCenter
 {
+    /*
+     
+     The Cartesian coordinates of the circumcenter are
+     
+     U_x = ((A_x^2 + A_y^2)(B_y - C_y) + (B_x^2 + B_y^2)(C_y - A_y) + (C_x^2 + C_y^2)(A_y - B_y)) / D,
+     U_y = ((A_x^2 + A_y^2)(C_x - B_x) + (B_x^2 + B_y^2)(A_x - C_x) + (C_x^2 + C_y^2)(B_x - A_x)) / D
+     
+     with
+     D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y))
+     
+     
+     
+     
+     */
+    
+    
     return CGPointMake(0, 0);
 }
 //**********************************************

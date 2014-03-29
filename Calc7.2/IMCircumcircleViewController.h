@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "IMTriangle.h"
+#import "IMCircumcircleDrawView.h"
 
-@interface IMCircumcircleViewController : UIViewController
+
+@interface IMCircumcircleViewController : UIViewController 
 
 @property (strong, nonatomic) IMTriangle* triangle;
 
@@ -19,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *pointOneYTextField;
 @property (weak, nonatomic) IBOutlet UITextField *pointTwoYTextField;
 @property (weak, nonatomic) IBOutlet UITextField *pointThreeYTextField;
+
+@property (weak, nonatomic) IBOutlet IMCircumcircleDrawView *circumDrawView;
 
 
 @end

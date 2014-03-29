@@ -12,6 +12,7 @@
 		6012AFA517AD98B500A1C291 /* IMCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA417AD98B500A1C291 /* IMCalculatorViewController.m */; };
 		6012AFA817ADA9D800A1C291 /* IMTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFA717ADA9D800A1C291 /* IMTriangle.m */; };
 		6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */; };
+		60604B1818E10FB400B7E59D /* IMCircumcircleDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60604B1718E10FB400B7E59D /* IMCircumcircleDrawView.m */; };
 		6072540F18DBA2E700DF4590 /* IMTriCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */; };
 		60E3F07018DBA7B500890216 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60E3F06F18DBA7B500890216 /* Images.xcassets */; };
 		60E3F07618DE190E00890216 /* IMCircumcircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E3F07518DE190E00890216 /* IMCircumcircleViewController.m */; };
@@ -51,6 +52,8 @@
 		6012AFA717ADA9D800A1C291 /* IMTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriangle.m; sourceTree = "<group>"; };
 		6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriangleDrawVeiw.h; sourceTree = "<group>"; };
 		6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriangleDrawVeiw.m; sourceTree = "<group>"; };
+		60604B1618E10FB400B7E59D /* IMCircumcircleDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCircumcircleDrawView.h; sourceTree = "<group>"; };
+		60604B1718E10FB400B7E59D /* IMCircumcircleDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCircumcircleDrawView.m; sourceTree = "<group>"; };
 		6072540D18DBA2E700DF4590 /* IMTriCalcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriCalcViewController.h; sourceTree = "<group>"; };
 		6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriCalcViewController.m; sourceTree = "<group>"; };
 		60E3F06F18DBA7B500890216 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 			children = (
 				60E3F06F18DBA7B500890216 /* Images.xcassets */,
 				60F8A8E117AB998F00B3D13F /* Main.storyboard */,
+				60604B1618E10FB400B7E59D /* IMCircumcircleDrawView.h */,
+				60604B1718E10FB400B7E59D /* IMCircumcircleDrawView.m */,
 				6012AFA917ADA9E200A1C291 /* IMTriangleDrawVeiw.h */,
 				6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */,
 			);
@@ -259,6 +264,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = iMillIndustries;
 				TargetAttributes = {
+					60F8A8CB17AB998E00B3D13F = {
+						DevelopmentTeam = 7LU46WA9DB;
+					};
 					60F8A8EF17AB998F00B3D13F = {
 						TestTargetID = 60F8A8CB17AB998E00B3D13F;
 					};
@@ -312,6 +320,7 @@
 				60F8A8E017AB998F00B3D13F /* IMAppDelegate.m in Sources */,
 				6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */,
 				6012AFA817ADA9D800A1C291 /* IMTriangle.m in Sources */,
+				60604B1818E10FB400B7E59D /* IMCircumcircleDrawView.m in Sources */,
 				6072540F18DBA2E700DF4590 /* IMTriCalcViewController.m in Sources */,
 				6012AFA217AD989A00A1C291 /* IMShuntingToken.m in Sources */,
 				60E3F07918DE260000890216 /* IMCircle.m in Sources */,
@@ -441,10 +450,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calc7.2/Calc7.2-Prefix.pch";
 				INFOPLIST_FILE = "Calc7.2/Calc7.2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -454,10 +466,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calc7.2/Calc7.2-Prefix.pch";
 				INFOPLIST_FILE = "Calc7.2/Calc7.2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

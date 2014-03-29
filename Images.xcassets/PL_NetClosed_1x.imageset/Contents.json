@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "PL_NetClosed_1x.png"
+      "filename" : "triangle_x25png.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "PL_NetClosed_2x.png"
+      "filename" : "triangle_x50.png"
     }
   ],
   "info" : {

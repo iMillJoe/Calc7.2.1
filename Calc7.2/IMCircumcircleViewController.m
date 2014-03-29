@@ -7,13 +7,15 @@
 //
 
 #import "IMCircumcircleViewController.h"
+#import "IMCircumcircleDrawView.h"
 
-@interface IMCircumcircleViewController ()
+@interface IMCircumcircleViewController () <IMTriangleCircumcircleDrawViewDataSource>
 
 @end
 
 @implementation IMCircumcircleViewController
-@synthesize triangle = triangle;
+@synthesize triangle = _triangle;
+@synthesize circumDrawView = _circumDrawView;
 
 
 
@@ -31,17 +33,24 @@
     CGPoint pointB = CGPointMake([[self.pointTwoXTextField text] doubleValue], [[self.pointTwoYTextField text] doubleValue]);
     CGPoint pointC = CGPointMake([[self.pointThreeXTextField text] doubleValue], [[self.pointThreeYTextField text] doubleValue]);
     
-    if (!triangle)
+    if (!self.triangle)
     {
-        triangle = [[IMTriangle alloc] initFromThreePointsWithPointA:pointA pointB:pointB andPointC:pointC usingDegrees:YES];
+        self.triangle = [[IMTriangle alloc] initFromThreePointsWithPointA:pointA pointB:pointB andPointC:pointC usingDegrees:YES];
     }
     
+    NSLog(@"circumcircle:%f", [self.triangle circumDiameter]);
     
+    NSLog(@"TriCircumPointX: %f TriCircumPointY: %f", self.triangle.circumCenter.x, self.triangle.circumCenter.y);
+    
+    NSLog(@"the freaking triangle: %@", self.triangle);
     
     [[self view] endEditing:YES];
+    [self.circumDrawView setNeedsDisplay];
+    
+    
+    
     
     /*
-    triDisplay.dataSource = self;
     [triDisplay setNeedsDisplay];
     
     
@@ -76,6 +85,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.circumDrawView.dataSource = self;
     // Do any additional setup after loading the view.
 }
 

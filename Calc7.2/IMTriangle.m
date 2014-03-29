@@ -43,7 +43,6 @@
 @interface IMTriangle()
 @property BOOL solved; //Is this triangle solved completely?
 @property NSString *error; //Error message
-@property (nonatomic, strong) IMCircle* circle;
 @end
 
 @implementation IMTriangle
@@ -61,8 +60,6 @@
 @synthesize angleOfRotation             =_angleOfRotation;
 @synthesize solved                      =_solved;
 @synthesize error                       =_error;
-@synthesize circle                      =_circle;
-
 
 
 //Find a way to make sure that any part of the triangle, I don't currently know, but wish too, is calculated, when AND ONLY WHEN, it is needed at runtime
@@ -104,14 +101,14 @@
         self.sideA = sideA , self.sideB = sideB , self.sideC = sideC;
         [self solve];
     }
-    else NSLog(@"initFromThreeSides triangle already exisits");
+    else NSLog(@"IMTriangle initFromThreeSides... Triangle already exisits!");
     if (self.solved)
     {
         return [self initWithTriangle:self];
     }
     else
     {
-        NSLog(@"initFromThreeSides: failed");
+        NSLog(@"IMTriangle initFromThreeSides: failed");
         return nil;
     }
 }
@@ -167,22 +164,26 @@
     self.pointA = pointA, self.pointB = pointB, self.pointC = pointC;
     
     // Find lenth of sideA
+    NSLog(@"selfA.x: %f selfA.y: %f", self.pointA.x, self.pointA.y);
+    NSLog(@"selfB.x: %f selfB.y: %f", self.pointB.x, self.pointB.y);
+    NSLog(@"selfB.C: %f selfC.y: %f", self.pointC.x, self.pointC.y);
     double sideADeltaX = fabs(pointB.x - pointC.x);
     double sideADeltaY = fabs(pointC.y - pointB.y);
     
+    NSLog(@"sideADeltaX: %f sideADeltaY %f", sideADeltaX, sideADeltaY);
+    
     if (sideADeltaX == 0)
     {
-        if (! sideADeltaY == 0) {
-            self.sideA = sideADeltaY;
-        }
-        else
+        if (sideADeltaY == 0)
         {
             NSLog(@"Don't use the same points");
         }
-    }
-    else if (sideADeltaY == 0)
-    {
-        self.sideA = sideADeltaX;
+        
+        else
+        {
+            self.sideA = sideADeltaY;
+            
+        }
     }
     else
     {
@@ -241,6 +242,7 @@
     NSLog(@"sideCDeltaX: %f sideCDeltaY: %f sideC %f",sideCDeltaX, sideCDeltaY, self.sideC);
     
     [self solve];
+    if (degrees) self.shouldUseDegrees = YES;
     
     NSLog(@"%@", self);
     
@@ -480,14 +482,14 @@
 //**********************************************
 -(double) circumDiameter
 {
-    //D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y))
+    //
     
     if (self.solved) {
         return ( (self.sideA * self.sideB * self.sideC) /
-                (sqrt( (self.sideA + self.sideB + self.sideC) *
+               ( sqrt( (self.sideA + self.sideB + self.sideC) *
                        (self.sideB + self.sideC - self.sideA) *
                        (self.sideC + self.sideA - self.sideB) *
-                       (self.sideA + self.sideB - self.sideC)   ) ));
+                       (self.sideA + self.sideB - self.sideC) ) ));
     }
     
     return 0;
@@ -495,23 +497,38 @@
 
 -(CGPoint) circumCenter
 {
-    /*
-     
-     The Cartesian coordinates of the circumcenter are
-     
-     U_x = ((A_x^2 + A_y^2)(B_y - C_y) + (B_x^2 + B_y^2)(C_y - A_y) + (C_x^2 + C_y^2)(A_y - B_y)) / D,
-     U_y = ((A_x^2 + A_y^2)(C_x - B_x) + (B_x^2 + B_y^2)(A_x - C_x) + (C_x^2 + C_y^2)(B_x - A_x)) / D
-     
-     with
-     D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y))
-     
-     
-     
-     
-     */
+    CGPoint point;
+
+    
+    // The Cartesian coordinates of the circumcenter are
+    
+    double D;
+    double A_x = self.pointA.x;
+    double A_y = self.pointA.y;
+    double B_x = self.pointB.x;
+    double B_y = self.pointB.y;
+    double C_x = self.pointC.x;
+    double C_y = self.pointC.y;
     
     
-    return CGPointMake(0, 0);
+    // D = 2( A_x(B_y - C_y) + B_x(C_y - A_y) + C_x(A_y - B_y)).
+    D = 2 * ( A_x * (B_y - C_y) + B_x * (C_y - A_y) + C_x * (A_y - B_y));
+    
+    
+    // U_x = ((A_x^2 + A_y^2)(B_y - C_y) + (B_x^2 + B_y^2)(C_y - A_y) + (C_x^2 + C_y^2)(A_y - B_y)) / D,
+    point.x = ( ((A_x*A_x) + (A_y*A_y)) * (B_y - C_y) + ((B_x*B_x) + (B_y*B_y)) * (C_y - A_y) + ((C_x*C_x) + (C_y*C_y)) * (A_y - B_y)) / D;
+    
+    
+    //U_y = ((A_x^2 + A_y^2)(C_x - B_x) + (B_x^2 + B_y^2)(A_x - C_x) + (C_x^2 + C_y^2)(B_x - A_x)) / D
+    point.y = ((A_x*A_x + A_y*A_y) * (C_x - B_x) + (B_x*B_x + B_y*B_y) * (A_x - C_x) + (C_x*C_x + C_y*C_y) * (B_x - A_x)) / D;
+    
+    
+    
+    
+    NSLog(@"circumPointX: %f circumPointY: %f", point.x, point.y);
+    
+    return point;
+    
 }
 //**********************************************
 
@@ -560,10 +577,10 @@
 {
     if (self.error)
     {
-        return [NSString stringWithFormat:@"error %@ a=%.4f b=%.4f c=%.4f A=%.4f B=%.4f C=%.4f perimeter=%.4f area=%.4f height=%.4f shouldUseDegrees = %i", self.error, self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC ,self.perimeter , self.area ,  self.height , self.shouldUseDegrees];
+        return [NSString stringWithFormat:@"error %@ a=%.4f b=%.4f c=%.4f A=%.4f B=%.4f C=%.4f perimeter=%.4f area=%.4f height=%.4f circumDia= %.4f shouldUseDegrees = %i", self.error, self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC ,self.perimeter , self.area ,  self.height, [self circumDiameter], self.shouldUseDegrees];
         
     }
-    else return [NSString stringWithFormat:@"a=%.4f b=%.4f c=%.4f A=%.4f B=%.4f C=%.4f perimeter=%.4f area=%.4f height=%.4f shouldUseDegrees = %i", self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC , self.perimeter , self.area ,  self.height , self.shouldUseDegrees];
+    else return [NSString stringWithFormat:@"a=%.4f b=%.4f c=%.4f A=%.4f B=%.4f C=%.4f perimeter=%.4f area=%.4f height=%.4f circumDia= %.4f shouldUseDegrees = %i", self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC , self.perimeter , self.area ,  self.height ,[self circumDiameter], self.shouldUseDegrees];
     
 }
 

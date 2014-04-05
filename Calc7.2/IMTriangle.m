@@ -164,9 +164,9 @@
     self.pointA = pointA, self.pointB = pointB, self.pointC = pointC;
     
     // Find lenth of sideA
-    NSLog(@"selfA.x: %f selfA.y: %f", self.pointA.x, self.pointA.y);
-    NSLog(@"selfB.x: %f selfB.y: %f", self.pointB.x, self.pointB.y);
-    NSLog(@"selfB.C: %f selfC.y: %f", self.pointC.x, self.pointC.y);
+    // NSLog(@"selfA.x: %f selfA.y: %f", self.pointA.x, self.pointA.y);
+    // NSLog(@"selfB.x: %f selfB.y: %f", self.pointB.x, self.pointB.y);
+    // NSLog(@"selfB.C: %f selfC.y: %f", self.pointC.x, self.pointC.y);
     double sideADeltaX = fabs(pointB.x - pointC.x);
     double sideADeltaY = fabs(pointC.y - pointB.y);
     
@@ -176,7 +176,7 @@
     {
         if (sideADeltaY == 0)
         {
-            NSLog(@"Don't use the same points");
+            NSLog(@"IMTriangle: Don't use the same points");
         }
         
         else
@@ -191,7 +191,7 @@
         self.sideA = ( sqrt( (sideADeltaX * sideADeltaX) + (sideADeltaY * sideADeltaY)) );
     }
     
-    NSLog(@"sideADeltaX: %f sideADeltaY: %f sideA %f",sideADeltaX, sideADeltaY, self.sideA);
+    //NSLog(@"sideADeltaX: %f sideADeltaY: %f sideA %f",sideADeltaX, sideADeltaY, self.sideA);
     
     
     // ..sideB
@@ -205,7 +205,7 @@
         }
         else
         {
-            NSLog(@"don't use the same points");
+            NSLog(@"IMTriangle: don't use the same points");
         }
     }
     else if (sideBDeltaY == 0)
@@ -217,7 +217,7 @@
         self.sideB = (sqrt( (sideBDeltaX * sideBDeltaX) + (sideBDeltaY * sideBDeltaY)) );
     }
     
-    NSLog(@"sideBDeltaX: %f sideBDeltaY: %f sideB %f", sideBDeltaX, sideBDeltaY, self.sideB);
+    //NSLog(@"sideBDeltaX: %f sideBDeltaY: %f sideB %f", sideBDeltaX, sideBDeltaY, self.sideB);
     
     // .. sideC
     double sideCDeltaX = ( fabs(pointB.x - pointA.x) );
@@ -239,12 +239,12 @@
         self.sideC = (sqrt( (sideCDeltaX * sideCDeltaX) + (sideCDeltaY * sideCDeltaY)) );
     }
     
-    NSLog(@"sideCDeltaX: %f sideCDeltaY: %f sideC %f",sideCDeltaX, sideCDeltaY, self.sideC);
+    //NSLog(@"sideCDeltaX: %f sideCDeltaY: %f sideC %f",sideCDeltaX, sideCDeltaY, self.sideC);
     
     [self solve];
     if (degrees) self.shouldUseDegrees = YES;
     
-    NSLog(@"%@", self);
+    //NSLog(@"%@", self);
     
     return self;
 }
@@ -577,10 +577,11 @@
 {
     if (self.error)
     {
-        return [NSString stringWithFormat:@"error %@ a=%.4f b=%.4f c=%.4f A=%.4f B=%.4f C=%.4f perimeter=%.4f area=%.4f height=%.4f circumDia= %.4f shouldUseDegrees = %i", self.error, self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC ,self.perimeter , self.area ,  self.height, [self circumDiameter], self.shouldUseDegrees];
+        return [NSString stringWithFormat:@"IMTriangle ERROR %@ a=%.4f b=%.4f c=%.4f A=%.4f B=%.4f C=%.4f perimeter=%.4f area=%.4f height=%.4f circumDia= %.4f shouldUseDegrees = %i", self.error, self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC ,self.perimeter , self.area ,  self.height, [self circumDiameter], self.shouldUseDegrees];
         
     }
-    else return [NSString stringWithFormat:@"a=%.4f b=%.4f c=%.4f A=%.4f B=%.4f C=%.4f perimeter=%.4f area=%.4f height=%.4f circumDia= %.4f shouldUseDegrees = %i", self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC , self.perimeter , self.area ,  self.height ,[self circumDiameter], self.shouldUseDegrees];
+    else return [NSString stringWithFormat:@"\n\nIMTriangle\na: %.4f b: %.4f c: %.4f \nA: %.4f B: %.4f C: %.4f \nperimeter: %.4f area: %.4f height: %.4f \ncircumDia: %.4f circumCenter: (%f, %f) shouldUseDegrees: %i\npointA: (%f, %f) pointB: (%f, %f) pointC: (%f, %f)\n\n", self.sideA , self.sideB , self.sideC , self.angleA , self.angleB , self.angleC , self.perimeter , self.area ,  self.height , self.circumDiameter, self.circumCenter.x, self.circumCenter.y ,self.shouldUseDegrees, self.pointA.x, self.pointA.y, self.pointB.x, self.pointB.y, self.pointC.x, self.pointC.y ];
+    
     
 }
 

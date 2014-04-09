@@ -61,14 +61,8 @@
     NSLog(@"Horray My DrawRect Got Called!!!! ");
     NSLog(@"%@",self.dataSource);
     
-    
-    //IMTriangle *triangle = [self.dataSource triangle];
-    //if (!triangle) return;
-    
-    
-    // for testing ///
-    IMTriangle* triangle = [[IMTriangle alloc] initFromThreePointsWithPointA:CGPointMake(3, 5) pointB:CGPointMake(7, 11) andPointC:CGPointMake(13, 17) usingDegrees:NO];
-    
+    IMTriangle *triangle = [self.dataSource triangle];
+    if (!triangle) return;
     
     triangle.shouldUseDegrees = NO;
     
@@ -105,6 +99,19 @@
     
     CGPoint cartesianOrigin = CGPointMake(center.x - newTri.circumCenter.x, center.y + newTri.circumCenter.y);
     
+    pointA.x = cartesianOrigin.x + newTri.pointA.x;
+    pointA.y = cartesianOrigin.y - newTri.pointA.y;
+    
+    pointB.x = cartesianOrigin.x + newTri.pointB.x;
+    pointB.y = cartesianOrigin.y - newTri.pointB.y;
+    
+    pointC.x = cartesianOrigin.x + newTri.pointC.x;
+    pointC.y = cartesianOrigin.y - newTri.pointC.y;
+    
+    
+    
+    
+    /*
     // offset x
     pointA.x = center.x + pointA.x;
     pointB.x = center.x + pointB.x;
@@ -115,6 +122,7 @@
     pointA.y = center.y - pointA.y;
     pointB.y = center.y - pointB.y;
     pointC.y = center.y - pointC.y;
+     */
     
     
     
@@ -145,9 +153,13 @@
     
     //draw origin
     CGContextMoveToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y);
-    CGContextAddLineToPoint(ctx, cartesianOrigin.x + 300 , cartesianOrigin.y);
+    CGContextAddLineToPoint(ctx, cartesianOrigin.x + 20 , cartesianOrigin.y);
     CGContextMoveToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y);
-    CGContextAddLineToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y - 100);
+    CGContextAddLineToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y - 20);
+    
+    // draw a line down from pointA
+    //CGContextMoveToPoint(ctx, pointA.x, pointA.y);
+    //CGContextAddLineToPoint(ctx, pointA.x, pointA.y + 5);
 
     
     CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
@@ -155,9 +167,6 @@
     
     //plot it's path
     CGContextStrokePath(ctx);
-    
-    
-                    
     
     
     

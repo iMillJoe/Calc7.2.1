@@ -485,7 +485,7 @@
     //
     
     if (self.solved) {
-        return ( (self.sideA * self.sideB * self.sideC) /
+        return 2 * ( (self.sideA * self.sideB * self.sideC) /
                ( sqrt( (self.sideA + self.sideB + self.sideC) *
                        (self.sideB + self.sideC - self.sideA) *
                        (self.sideC + self.sideA - self.sideB) *

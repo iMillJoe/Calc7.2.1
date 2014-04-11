@@ -86,7 +86,7 @@
     double scaleFactor = maxRadius / circumRad;
     
     
-    NSLog(@"maxRad: %f, circumRad: %f, scaleFactor: %f", maxRadius, circumRad, scaleFactor);
+    NSLog(@"maxRadius: %f, circumRad: %f, scaleFactor: %f", maxRadius, circumRad, scaleFactor);
 
     
     CGPoint pointA = CGPointMake(triangle.pointA.x * scaleFactor, triangle.pointA.y * scaleFactor);
@@ -109,42 +109,20 @@
     pointC.y = cartesianOrigin.y - newTri.pointC.y;
     
     
-    
-    
-    /*
-    // offset x
-    pointA.x = center.x + pointA.x;
-    pointB.x = center.x + pointB.x;
-    pointC.x = center.x + pointC.x;
-    
-    
-    // offset y
-    pointA.y = center.y - pointA.y;
-    pointB.y = center.y - pointB.y;
-    pointC.y = center.y - pointC.y;
-     */
-    
-    
-    
-    
-    NSLog(@"MaxRadius = %f", maxRadius);
-    
-    
     //get the currant drawing context,
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     
-    //draw the circle
+    //draw circle
     CGContextAddArc(ctx, center.x, center.y, maxRadius, 0, 2 * M_PI, 1);
     
-    //draw its crosshairs
+    //draw its center
     CGContextMoveToPoint(ctx, center.x - 5, center.y);
     CGContextAddLineToPoint(ctx, center.x + 5, center.y);
     CGContextMoveToPoint(ctx, center.x, center.y - 5);
     CGContextAddLineToPoint(ctx, center.x, center.y + 5);
     
 
-    
     // Draw the triangle.
     CGContextMoveToPoint(ctx, pointA.x, pointA.y);
     CGContextAddLineToPoint(ctx, pointB.x, pointB.y);
@@ -152,10 +130,12 @@
     CGContextClosePath(ctx);
     
     //draw origin
-    CGContextMoveToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y);
-    CGContextAddLineToPoint(ctx, cartesianOrigin.x + 20 , cartesianOrigin.y);
-    CGContextMoveToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y);
-    CGContextAddLineToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y - 20);
+    CGContextMoveToPoint(ctx, cartesianOrigin.x - 7, cartesianOrigin.y);
+    CGContextAddLineToPoint(ctx, cartesianOrigin.x + 7 , cartesianOrigin.y);
+    CGContextMoveToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y + 7);
+    CGContextAddLineToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y - 7);
+    CGContextMoveToPoint(ctx, cartesianOrigin.x + 7, cartesianOrigin.y);
+    CGContextAddArc(ctx, cartesianOrigin.x, cartesianOrigin.y, 7, 0, M_PI * 2, YES);
     
     // draw a line down from pointA
     //CGContextMoveToPoint(ctx, pointA.x, pointA.y);

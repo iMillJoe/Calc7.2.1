@@ -21,6 +21,18 @@
 
 
 - (IBAction)clearButtonPressed:(id)sender {
+    self.pointOneXTextField = nil;
+    self.pointOneYTextField = nil;
+    self.pointTwoXTextField = nil;
+    self.pointTwoYTextField = nil;
+    self.pointThreeXTextField = nil;
+    self.pointThreeYTextField = nil;
+    
+    
+    self.triangle = nil;
+    
+    
+    
 }
 
 
@@ -38,31 +50,10 @@
         self.triangle = [[IMTriangle alloc] initFromThreePointsWithPointA:pointA pointB:pointB andPointC:pointC usingDegrees:YES];
     }
     
-    NSLog(@"circumcircle:%f", [self.triangle circumDiameter]);
-    
-    NSLog(@"TriCircumPointX: %f TriCircumPointY: %f", self.triangle.circumCenter.x, self.triangle.circumCenter.y);
-    
-    NSLog(@"the freaking triangle: %@", self.triangle);
-    
     [[self view] endEditing:YES];
     [self.circumDrawView setNeedsDisplay];
+    NSLog(@"End of solveButtonPressed for tri: %@", self.triangle);
     
-    
-    
-    
-    /*
-    [triDisplay setNeedsDisplay];
-    
-    
-    
-    [self updateAll];
-    [textVeiwSideA setEnabled:NO];
-    [textVeiwSideB setEnabled:NO];
-    [textVeiwSideC setEnabled:NO];
-    [AngleATextFeild setEnabled:NO];
-    [AngleBTextFeild setEnabled:NO];
-    [AngleCTextFeild setEnabled:NO];
-     */
 }
 
 

@@ -16,65 +16,65 @@
 
 
 @implementation IMTriCalcViewController
-@synthesize textVeiwSideA;
-@synthesize textVeiwSideB;
-@synthesize textVeiwSideC;
-@synthesize AngleATextFeild;
-@synthesize AngleBTextFeild;
-@synthesize AngleCTextFeild;
-@synthesize triDisplay;
-@synthesize triangle;
+@synthesize textVeiwSideA = _textVeiwSideA;
+@synthesize textVeiwSideB = _textVeiwSideB;
+@synthesize textVeiwSideC = _textVeiwSideC;
+@synthesize AngleATextFeild = _AngleATextFeild;
+@synthesize AngleBTextFeild = _AngleBTextFeild;
+@synthesize AngleCTextFeild = _AngleCTextFeild;
+@synthesize triDisplay = _triDisplay;
+@synthesize triangle = _triangle;
 
 
 
 - (IBAction)solvedPressed:(id)sender {
     
-    if (!triangle) {
-        triangle = [[IMTriangle alloc] init];
-        triangle.shouldUseDegrees = YES;
+    if (!self.triangle) {
+        self.triangle = [[IMTriangle alloc] init];
+        self.triangle.shouldUseDegrees = YES;
     }
     
-    triangle.SideA  = [[textVeiwSideA text] doubleValue];
-    triangle.SideB  = [[textVeiwSideB text] doubleValue];
-    triangle.SideC  = [[textVeiwSideC text] doubleValue];
-    triangle.angleA = [[AngleATextFeild text] doubleValue];
-    triangle.angleB = [[AngleBTextFeild text] doubleValue];
-    triangle.angleC = [[AngleCTextFeild text] doubleValue];
-    [triangle solve];
+    self.triangle.SideA  = [[self.textVeiwSideA text] doubleValue];
+    self.triangle.SideB  = [[self.textVeiwSideB text] doubleValue];
+    self.triangle.SideC  = [[self.textVeiwSideC text] doubleValue];
+    self.triangle.angleA = [[self.AngleATextFeild text] doubleValue];
+    self.triangle.angleB = [[self.AngleBTextFeild text] doubleValue];
+    self.triangle.angleC = [[self.AngleCTextFeild text] doubleValue];
+    [self.triangle solve];
 
-    triDisplay.dataSource = self;
-    [triDisplay setNeedsDisplay];
+    self.triDisplay.dataSource = self;
+    [self.triDisplay setNeedsDisplay];
     [[self view] endEditing:YES];
     
 
     [self updateAll];
-    [textVeiwSideA setEnabled:NO];
-    [textVeiwSideB setEnabled:NO];
-    [textVeiwSideC setEnabled:NO];
-    [AngleATextFeild setEnabled:NO];
-    [AngleBTextFeild setEnabled:NO];
-    [AngleCTextFeild setEnabled:NO];
+    [self.textVeiwSideA setEnabled:NO];
+    [self.textVeiwSideB setEnabled:NO];
+    [self.textVeiwSideC setEnabled:NO];
+    [self.AngleATextFeild setEnabled:NO];
+    [self.AngleBTextFeild setEnabled:NO];
+    [self.AngleCTextFeild setEnabled:NO];
     
 }
 
 
 - (IBAction)clearPressed:(id)sender {
     
-    textVeiwSideA.text = @"";
-    textVeiwSideB.text = @"";
-    textVeiwSideC.text = @"";
-    AngleATextFeild.text = @"";
-    AngleBTextFeild.text = @"";
-    AngleCTextFeild.text = @"";
-    triangle = nil; 
-    triDisplay.dataSource = nil;
-    [triDisplay setNeedsDisplay];
-    [textVeiwSideA setEnabled:YES];
-    [textVeiwSideB setEnabled:YES];
-    [textVeiwSideC setEnabled:YES];
-    [AngleATextFeild setEnabled:YES];
-    [AngleBTextFeild setEnabled:YES];
-    [AngleCTextFeild setEnabled:YES];
+    self.textVeiwSideA.text = @"";
+    self.textVeiwSideB.text = @"";
+    self.textVeiwSideC.text = @"";
+    self.AngleATextFeild.text = @"";
+    self.AngleBTextFeild.text = @"";
+    self.AngleCTextFeild.text = @"";
+    self.triangle = nil;
+    self.triDisplay.dataSource = nil;
+    [self.triDisplay setNeedsDisplay];
+    [self.textVeiwSideA setEnabled:YES];
+    [self.textVeiwSideB setEnabled:YES];
+    [self.textVeiwSideC setEnabled:YES];
+    [self.AngleATextFeild setEnabled:YES];
+    [self.AngleBTextFeild setEnabled:YES];
+    [self.AngleCTextFeild setEnabled:YES];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -95,12 +95,12 @@
 - (void)viewDidUnload
 {
 
-    [self setTextVeiwSideA:nil];
-    [self setTextVeiwSideB:nil];
-    [self setTextVeiwSideC:nil];
-    [self setAngleATextFeild:nil];
-    [self setAngleBTextFeild:nil];
-    [self setAngleCTextFeild:nil];
+    self.TextVeiwSideA = nil;
+    self.TextVeiwSideB = nil;
+    self.TextVeiwSideC = nil;
+    self.angleATextFeild = nil;
+    self.angleBTextFeild = nil;
+    self.angleCTextFeild = nil;
 
     [self setTriDisplay:nil];
     [super viewDidUnload];
@@ -121,12 +121,12 @@
 
 -(void) updateAll
 {
-    [AngleATextFeild setText: [NSString stringWithFormat:@"%.4f",triangle.angleA]];
-    [AngleBTextFeild setText: [NSString stringWithFormat:@"%.4f",triangle.angleB]];
-    [AngleCTextFeild setText: [NSString stringWithFormat:@"%.4f",triangle.angleC]];
-    [textVeiwSideA setText:[NSString stringWithFormat:@"%.4f",triangle.sideA]];
-    [textVeiwSideB setText:[NSString stringWithFormat:@"%.4f",triangle.sideB]];
-    [textVeiwSideC setText:[NSString stringWithFormat:@"%.4f",triangle.sideC]];
+    [self.AngleATextFeild setText: [NSString stringWithFormat:@"%.4f", self.triangle.angleA]];
+    [self.AngleBTextFeild setText: [NSString stringWithFormat:@"%.4f", self.triangle.angleB]];
+    [self.AngleCTextFeild setText: [NSString stringWithFormat:@"%.4f", self.triangle.angleC]];
+    [self.textVeiwSideA setText:[NSString stringWithFormat:@"%.4f", self.triangle.sideA]];
+    [self.textVeiwSideB setText:[NSString stringWithFormat:@"%.4f", self.triangle.sideB]];
+    [self.textVeiwSideC setText:[NSString stringWithFormat:@"%.4f", self.triangle.sideC]];
     
 }
 

@@ -108,39 +108,55 @@
     pointC.x = cartesianOrigin.x + newTri.pointC.x;
     pointC.y = cartesianOrigin.y - newTri.pointC.y;
     
+    NSString* circumCenterDisplay = [NSString stringWithFormat:@"( %.4f , %.4f )", triangle.circumCenter.x , triangle.circumCenter.y];
     
-    //get the currant drawing context,
+    NSLog(@"DisplayCenter: %@", circumCenterDisplay);
+    
+    CGPoint displayPoint = CGPointMake(center.x, center.y + 10);
+    NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    
+    style.alignment = NSTextAlignmentCenter;
+    NSDictionary* atrb = [NSDictionary dictionaryWithObject:style forKey:NSParagraphStyleAttributeName];
+    
+    
+    
+    [circumCenterDisplay drawAtPoint:displayPoint withAttributes:atrb];
+    
+    
+    //get the current drawing context,
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
     
     //draw circle
     CGContextAddArc(ctx, center.x, center.y, maxRadius, 0, 2 * M_PI, 1);
     
-    //draw its center
+    //draw its center point
     CGContextMoveToPoint(ctx, center.x - 5, center.y);
     CGContextAddLineToPoint(ctx, center.x + 5, center.y);
     CGContextMoveToPoint(ctx, center.x, center.y - 5);
     CGContextAddLineToPoint(ctx, center.x, center.y + 5);
     
-
-    // Draw the triangle.
+    //draw the triangle.
     CGContextMoveToPoint(ctx, pointA.x, pointA.y);
     CGContextAddLineToPoint(ctx, pointB.x, pointB.y);
     CGContextAddLineToPoint(ctx, pointC.x, pointC.y);
     CGContextClosePath(ctx);
     
-    //draw origin
-    CGContextMoveToPoint(ctx, cartesianOrigin.x - 7, cartesianOrigin.y);
-    CGContextAddLineToPoint(ctx, cartesianOrigin.x + 7 , cartesianOrigin.y);
-    CGContextMoveToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y + 7);
-    CGContextAddLineToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y - 7);
-    CGContextMoveToPoint(ctx, cartesianOrigin.x + 7, cartesianOrigin.y);
-    CGContextAddArc(ctx, cartesianOrigin.x, cartesianOrigin.y, 7, 0, M_PI * 2, YES);
-    
-    // draw a line down from pointA
-    //CGContextMoveToPoint(ctx, pointA.x, pointA.y);
-    //CGContextAddLineToPoint(ctx, pointA.x, pointA.y + 5);
-
+    //If possable draw the cartesianOrigin
+    if (CGRectContainsPoint(rect, cartesianOrigin))
+    {
+        NSLog(@"Origin Was Drawn");
+        CGContextMoveToPoint(ctx, cartesianOrigin.x - 7, cartesianOrigin.y);
+        CGContextAddLineToPoint(ctx, cartesianOrigin.x + 7 , cartesianOrigin.y);
+        CGContextMoveToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y + 7);
+        CGContextAddLineToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y - 7);
+        CGContextMoveToPoint(ctx, cartesianOrigin.x + 7, cartesianOrigin.y);
+        
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextAddArc(ctx, cartesianOrigin.x, cartesianOrigin.y, 7, 0, M_PI / 2, YES);
+        CGContextSetRGBFillColor(ctx, 255, 255, 255, 1);
+        CGContextAddArc(ctx, cartesianOrigin.x, cartesianOrigin.y, 7, 0, M_PI / 2, YES);
+        
+    }
     
     CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(ctx, 1);

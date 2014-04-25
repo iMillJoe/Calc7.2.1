@@ -29,9 +29,6 @@
 
 /*
  To do list
- 
- 
- get better, and customized backdrop
  spell check everything, I am a bad speller.
  
  

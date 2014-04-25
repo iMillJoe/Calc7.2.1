@@ -21,19 +21,23 @@
 
 
 - (IBAction)clearButtonPressed:(id)sender {
-    self.pointOneXTextField = nil;
-    self.pointOneYTextField = nil;
-    self.pointTwoXTextField = nil;
-    self.pointTwoYTextField = nil;
-    self.pointThreeXTextField = nil;
-    self.pointThreeYTextField = nil;
+    self.pointOneXTextField.text = nil;
+    self.pointOneYTextField.text = nil;
+    self.pointTwoXTextField.text = nil;
+    self.pointTwoYTextField.text = nil;
+    self.pointThreeXTextField.text = nil;
+    self.pointThreeYTextField.text = nil;
     
     
     self.triangle = nil;
+    self.circumDrawView.dataSource = nil;
+    [self.circumDrawView setNeedsDisplay];
+    
     
     
     
 }
+
 
 
 
@@ -52,6 +56,7 @@
     
     [[self view] endEditing:YES];
     [self.circumDrawView setNeedsDisplay];
+    self.circumDrawView.dataSource = self;
     NSLog(@"End of solveButtonPressed for tri: %@", self.triangle);
     
 }
@@ -60,9 +65,17 @@
 
 
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return NO;
 
+}
 
-
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

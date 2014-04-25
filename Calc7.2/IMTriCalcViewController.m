@@ -67,7 +67,7 @@
     self.AngleBTextFeild.text = @"";
     self.AngleCTextFeild.text = @"";
     self.triangle = nil;
-    self.triDisplay.dataSource = nil;
+    self.triDisplay.dataSource = nil; 
     [self.triDisplay setNeedsDisplay];
     [self.textVeiwSideA setEnabled:YES];
     [self.textVeiwSideB setEnabled:YES];
@@ -110,13 +110,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return NO;
-    /*
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return NO;
-    } else {
-        return YES;
-    }
-     */
 }
 
 -(void) updateAll

@@ -108,21 +108,6 @@
     pointC.x = cartesianOrigin.x + newTri.pointC.x;
     pointC.y = cartesianOrigin.y - newTri.pointC.y;
     
-    NSString* circumCenterDisplay = [NSString stringWithFormat:@"( %.4f , %.4f )", triangle.circumCenter.x , triangle.circumCenter.y];
-    
-    NSLog(@"DisplayCenter: %@", circumCenterDisplay);
-    
-    CGPoint displayPoint = CGPointMake(center.x, center.y + 10);
-    NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    
-    style.alignment = NSTextAlignmentCenter;
-    NSDictionary* atrb = [NSDictionary dictionaryWithObject:style forKey:NSParagraphStyleAttributeName];
-    
-    
-    
-    [circumCenterDisplay drawAtPoint:displayPoint withAttributes:atrb];
-    
-    
     //get the current drawing context,
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
@@ -151,11 +136,10 @@
         CGContextAddLineToPoint(ctx, cartesianOrigin.x, cartesianOrigin.y - 7);
         CGContextMoveToPoint(ctx, cartesianOrigin.x + 7, cartesianOrigin.y);
         
-        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
-        CGContextAddArc(ctx, cartesianOrigin.x, cartesianOrigin.y, 7, 0, M_PI / 2, YES);
-        CGContextSetRGBFillColor(ctx, 255, 255, 255, 1);
-        CGContextAddArc(ctx, cartesianOrigin.x, cartesianOrigin.y, 7, 0, M_PI / 2, YES);
+        CGContextAddArc(ctx, cartesianOrigin.x, cartesianOrigin.y, 7, 0, (M_PI * 2), YES);
         
+    } else {
+        NSLog(@"Origin was NOT drawn");
     }
     
     CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);

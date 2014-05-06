@@ -21,8 +21,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *pointOneYTextField;
 @property (weak, nonatomic) IBOutlet UITextField *pointTwoYTextField;
 @property (weak, nonatomic) IBOutlet UITextField *pointThreeYTextField;
+@property (weak, nonatomic) IBOutlet UILabel *circumDiaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *centerPointLabel;
 
-@property (weak, nonatomic) IBOutlet IMCircumcircleDrawView *circumDrawView;
+
+@property (strong, nonatomic) IBOutlet IMCircumcircleDrawView *circumDrawView;
 
 
 @end

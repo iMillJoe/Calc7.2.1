@@ -495,7 +495,7 @@
     NSLog(@"outputQueue %@" , outputQueue);
     if (self.syntaxError)
     {
-        //numberBuilder = @"";// Analyse points outs out this value is never read, so I commented it out
+        //numberBuilder = @"";// Analize points outs out this value is never read, so I commented it out
         solution = self.syntaxError.description;
     }
 

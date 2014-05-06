@@ -20,6 +20,8 @@
 
 
 
+
+
 - (IBAction)clearButtonPressed:(id)sender {
     self.pointOneXTextField.text = nil;
     self.pointOneYTextField.text = nil;
@@ -27,14 +29,12 @@
     self.pointTwoYTextField.text = nil;
     self.pointThreeXTextField.text = nil;
     self.pointThreeYTextField.text = nil;
-    
+    self.circumDiaLabel.text = @"Diameter";
+    self.centerPointLabel.text = @"Center Point";
     
     self.triangle = nil;
     self.circumDrawView.dataSource = nil;
     [self.circumDrawView setNeedsDisplay];
-    
-    
-    
     
 }
 
@@ -57,6 +57,19 @@
     [[self view] endEditing:YES];
     [self.circumDrawView setNeedsDisplay];
     self.circumDrawView.dataSource = self;
+    
+    
+    
+    /***********/
+    NSString* circumCenterDisplayString = [NSString stringWithFormat:@"(%.4f, %.4f)", self.triangle.circumCenter.x , self.triangle.circumCenter.y];
+    
+    self.centerPointLabel.text = circumCenterDisplayString;
+    
+    self.circumDiaLabel.text = [NSString stringWithFormat:@"%.4f", self.triangle.circumDiameter];
+    
+    
+    
+    
     NSLog(@"End of solveButtonPressed for tri: %@", self.triangle);
     
 }

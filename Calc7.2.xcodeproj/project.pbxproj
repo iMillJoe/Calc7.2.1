@@ -183,11 +183,11 @@
 		60F8A8D617AB998E00B3D13F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				60F8A8DF17AB998F00B3D13F /* IMAppDelegate.m */,
-				60F8A8D717AB998E00B3D13F /* Calc7.2-Info.plist */,
 				60F8A8DE17AB998E00B3D13F /* IMAppDelegate.h */,
-				60F8A8D817AB998E00B3D13F /* InfoPlist.strings */,
+				60F8A8DF17AB998F00B3D13F /* IMAppDelegate.m */,
 				60F8A8DB17AB998E00B3D13F /* main.m */,
+				60F8A8D717AB998E00B3D13F /* Calc7.2-Info.plist */,
+				60F8A8D817AB998E00B3D13F /* InfoPlist.strings */,
 				60F8A8DD17AB998E00B3D13F /* Calc7.2-Prefix.pch */,
 			);
 			name = "Supporting Files";

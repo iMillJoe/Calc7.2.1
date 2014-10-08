@@ -154,7 +154,7 @@
     double sideADeltaX = fabs(pointB.x - pointC.x);
     double sideADeltaY = fabs(pointC.y - pointB.y);
     
-    NSLog(@"sideADeltaX: %f sideADeltaY %f", sideADeltaX, sideADeltaY);
+    //NSLog(@"sideADeltaX: %f sideADeltaY %f", sideADeltaX, sideADeltaY);
     
     if (sideADeltaX == 0)
     {

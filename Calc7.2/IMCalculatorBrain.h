@@ -26,7 +26,7 @@
 
 @interface CalculatorBrain : NSObject
 
--(NSString *) evaluateExpression: (NSString *) input; //Returns an NSString, with a double or syntax error, for a given mathmatical expression in infixed foramt.
+-(NSString *) evaluateExpression: (NSString *) input; // Returns an NSString, with a double or syntax error, for an infixed mathmatical expression.
 
 @property (nonatomic, strong, readonly) NSString *syntaxError;
 

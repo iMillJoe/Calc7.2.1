@@ -348,8 +348,6 @@
             }
         }
         
-        
-        
         else self.syntaxError = @"unknown token";
         
         //When there are no more tokens to read
@@ -361,7 +359,6 @@
                 //If the operator token on the top of the stack is a parenthesis, then there are mismatched parentheses
                 if ([[[stack lastObject] stringValue] isEqualToString:@")"] || [[[stack lastObject]stringValue] isEqualToString:@"("])
                 {
-                    //NSLog(@"mismatch ()() at end of tokens");
                     self.syntaxError = [NSString stringWithFormat:@"extra '%@' " , [[stack lastObject] stringValue]];
                 }
                 //Pop the operator onto the output queue.

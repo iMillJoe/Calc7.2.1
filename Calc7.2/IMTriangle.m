@@ -55,7 +55,8 @@
 
 -(id) initWithTriangle:(IMTriangle *)triangle
 {
-    if (self = [super init])
+    self = [super init];
+    if (self)
     {
         if (triangle.solved == YES)
         {
@@ -68,27 +69,33 @@
             {
                 self = triangle;
             }
-            else return nil;
         }
         return self;
     }
     NSLog(@"initWithTriangle: failed");
     return nil;
+
     
 }
 
 -(id) initFromThreeSidesWithSideA: (double)sideA sideB:(double)sideB  andSideC:(double)sideC usingDegrees: (BOOL)degrees;
 {
-    if (degrees) _shouldUseDegrees = YES;
-    if (!(_sideA && _sideB && _sideC))
+    IMTriangle* triangle = [[IMTriangle alloc] init];
+    if (degrees == YES)
     {
-        self.sideA = sideA , self.sideB = sideB , self.sideC = sideC;
-        [self solve];
+        triangle.shouldUseDegrees = YES;
     }
-    else NSLog(@"IMTriangle initFromThreeSides... Triangle already exisits!");
-    if (self.solved)
+    else
     {
-        return [self initWithTriangle:self];
+        triangle.shouldUseDegrees = NO;
+    }
+    
+    triangle.sideA = sideA , triangle.sideB = sideB , triangle.sideC = sideC;
+    [triangle solve];
+    
+    if (triangle.solved)
+    {
+        return [self initWithTriangle: triangle];
     }
     else
     {
@@ -97,17 +104,24 @@
     }
 }
 
--(id) initFromSideAngleSideWithAngleA: (double)angleA sideB:(double)sideB  andSideC:(double) sideC usingDegrees:(BOOL)degrees;
+-(id) initFromSideAngleSideWithAngleA: (double)angleA sideB:(double)sideB  andSideC:(double)sideC usingDegrees:(BOOL)degrees;
 {
-    if (degrees) _shouldUseDegrees = YES;
-    if (!(self.sideA && self.sideB && self.sideC))
+    IMTriangle* triangle = [[IMTriangle alloc] init];
+    
+    if (degrees == YES )
     {
-        self.angleA = angleA , self.sideB = sideB , self.sideC = sideC;
-        [self solve];
+        triangle.shouldUseDegrees = YES;
     }
-    else NSLog(@"initFromSideAngleSide: failed, triangle already exisits");
+    else
+    {
+        triangle.shouldUseDegrees = NO;
+    }
+    
+    self.angleA = angleA , self.sideB = sideB , self.sideC = sideC;
+    [triangle solve];
+    
     if (self.solved) {
-        return [self initWithTriangle: self];
+        return [self initWithTriangle: triangle];
     }
     else
     {
@@ -118,16 +132,24 @@
 
 -(id) initFromAngleSideAngleWithAngleA: (double)angleA sideB:(double)sideB andAngleC:(double)angleC usingDegrees:(BOOL)degrees;
 {
-    if (degrees) _shouldUseDegrees = YES;
-    if (!(self.angleA && _sideB && self.angleC))
+    IMTriangle *triangle = [[IMTriangle alloc] init];
+    
+    if (degrees == YES)
     {
-        self.angleA = angleA , self.sideB = sideB , self.angleC = angleC;
-        [self solve];
+        triangle.shouldUseDegrees = YES;
     }
-    else NSLog(@"initFromAngleSideAngle: failed, triangle already exists");
-    if (self.solved) {
-        return [self initWithTriangle: self];
+    else
+    {
+        triangle.shouldUseDegrees = NO;
     }
+    
+    triangle.angleA = angleA , triangle.sideB = sideB , triangle.angleC = angleC;
+    [triangle solve];
+    
+    if (triangle.solved) {
+        return [self initWithTriangle: triangle];
+    }
+    
     else
     {
         NSLog(@"initFromAngleSideAngle: failed");
@@ -144,17 +166,16 @@
      http://www.endmemo.com/geometry/triangle.php
      */
     
-    // Store args to instance vars.
-    self.pointA = pointA, self.pointB = pointB, self.pointC = pointC;
     
-    // Find lenth of sideA
-    // NSLog(@"selfA.x: %f selfA.y: %f", self.pointA.x, self.pointA.y);
-    // NSLog(@"selfB.x: %f selfB.y: %f", self.pointB.x, self.pointB.y);
-    // NSLog(@"selfB.C: %f selfC.y: %f", self.pointC.x, self.pointC.y);
+    IMTriangle* triangle = [[IMTriangle alloc] init];
+    if (degrees) triangle.shouldUseDegrees = YES;
+    
+    // Store args to tri
+    triangle.pointA = pointA, triangle.pointB = pointB, triangle.pointC = pointC;
+    
+    // sideA
     double sideADeltaX = fabs(pointB.x - pointC.x);
     double sideADeltaY = fabs(pointC.y - pointB.y);
-    
-    //NSLog(@"sideADeltaX: %f sideADeltaY %f", sideADeltaX, sideADeltaY);
     
     if (sideADeltaX == 0)
     {
@@ -165,72 +186,76 @@
         
         else
         {
-            self.sideA = sideADeltaY;
+            triangle.sideA = sideADeltaY;
             
         }
     }
     else
     {
         
-        self.sideA = ( sqrt( (sideADeltaX * sideADeltaX) + (sideADeltaY * sideADeltaY)) );
+        triangle.sideA = ( sqrt( (sideADeltaX * sideADeltaX) + (sideADeltaY * sideADeltaY)) );
     }
     
-    //NSLog(@"sideADeltaX: %f sideADeltaY: %f sideA %f",sideADeltaX, sideADeltaY, self.sideA);
     
-    
-    // ..sideB
+    // sideB
     double sideBDeltaX = ( fabs(pointA.x - pointC.x) );
     double sideBDeltaY = ( fabs(pointC.y - pointA.y) );
     
     if (sideBDeltaX == 0) {
-        if (!sideBDeltaY == 0)
-        {
-            self.sideB = sideBDeltaY;
-        }
-        else
+        if (sideBDeltaY == 0)
         {
             NSLog(@"IMTriangle: don't use the same points");
         }
-    }
-    else if (sideBDeltaY == 0)
-    {
-        self.sideB = sideBDeltaX;
+        else
+        {
+            triangle.sideB = sideBDeltaY;
+        }
     }
     else
     {
-        self.sideB = (sqrt( (sideBDeltaX * sideBDeltaX) + (sideBDeltaY * sideBDeltaY)) );
+        triangle.sideB = (sqrt( (sideBDeltaX * sideBDeltaX) + (sideBDeltaY * sideBDeltaY)) );
     }
     
-    //NSLog(@"sideBDeltaX: %f sideBDeltaY: %f sideB %f", sideBDeltaX, sideBDeltaY, self.sideB);
     
-    // .. sideC
+    // sideC
     double sideCDeltaX = ( fabs(pointB.x - pointA.x) );
     double sideCDeltaY = ( fabs(pointA.y - pointB.y) );
     
     if (sideCDeltaX == 0)
     {
-        if (! sideCDeltaY == 0)
+        if (sideCDeltaY == 0)
         {
-            self.sideC = sideCDeltaY;
+            NSLog(@"IMTriangle: don't use the same points");
+
         }
         else
         {
-            NSLog(@"don't use the same points");
+             triangle.sideC = sideCDeltaY;
         }
     }
     else
     {
-        self.sideC = (sqrt( (sideCDeltaX * sideCDeltaX) + (sideCDeltaY * sideCDeltaY)) );
+        triangle.sideC = (sqrt( (sideCDeltaX * sideCDeltaX) + (sideCDeltaY * sideCDeltaY)) );
     }
     
-    //NSLog(@"sideCDeltaX: %f sideCDeltaY: %f sideC %f",sideCDeltaX, sideCDeltaY, self.sideC);
     
-    [self solve];
-    if (degrees) self.shouldUseDegrees = YES;
+    [triangle solve];
+    if (triangle.solved)
+    {
+        return [self initWithTriangle:triangle];
+    }
+    else
+    {
+        NSLog(@"IMTriangle initFromThreePoints... failed");
+        return nil;
+    }
     
-    //NSLog(@"%@", self);
     
-    return self;
+}
+
+-(id) init
+{
+    return [self initWithTriangle:nil];
 }
 
 #pragma mark solve

@@ -26,13 +26,16 @@
 @interface IMTriangle : NSObject
 
 
-
-@property double sideA, sideB, sideC, angleA, angleB, angleC; // The things you would expect a triangle to have
+// The things you would expect a triangle to have
+@property double sideA, sideB, sideC, angleA, angleB, angleC;
 @property CGPoint pointA, pointB, pointC;
 
-@property double angleOfRotation; // Angle side C is rotated from X (positive) axis, increasing in CCW direction.
+// Angle is side C is rotated from X (positive) axis, increasing in CCW direction.
+// 0 deg is 3 O'Clock, 90 deg is 12 O'Clock ans so forth
+@property double angleOfRotation;
 
-@property BOOL shouldUseDegrees; // set to YES for degrees, (my preferred measure of angles)
+// set to YES for degrees, (my preferred measure of angles)
+@property BOOL shouldUseDegrees;
 
 
 
@@ -49,7 +52,7 @@
 
 
 
-//solve method figures out the data it can from the users input
+//solve method figures out the data it can from the input
 -(void) solve;
 
 //convenience methods for returning other triangle attributes.

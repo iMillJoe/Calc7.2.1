@@ -193,11 +193,12 @@
 }
 
 
-
+/*
 -(void)viewDidLoad
 {
 
 }
+ */
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

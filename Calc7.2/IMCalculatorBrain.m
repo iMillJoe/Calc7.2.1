@@ -251,30 +251,6 @@
     
     [tokenized removeAllObjects];
     [tokenized addObjectsFromArray:flippie];
-    
-    
-    /*
-    while ([tokenized lastObject])
-    {
-        ;
-        [tokenized removeObjectAtIndex:0];
-    }
-    
-    */
-
-  /*  //// *** end of Tokenizing***
-    for (id obj in tokenized) {
-        if ([[obj numberValue] doubleValue] == M_PI) {
-            int nextIndex = [tokenized indexOfObject:obj] + 1;
-            if (nextIndex < [tokenized count]) {
-                if ([[tokenized objectAtIndex:nextIndex] doubleValue]) {
-                    [tokenized insertObject:[IMShuntingToken newTokenFromObject:@"*"] atIndex:nextIndex];
-                }
-            }
-            
-            
-            }
-   }*/
 
     
     

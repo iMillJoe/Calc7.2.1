@@ -36,7 +36,7 @@
 //private API declarations.
 @interface IMCalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringAnExpression;
-@property (nonatomic, strong) CalculatorBrain *brain;
+@property (nonatomic, strong) IMCalculatorBrain *brain;
 @property (nonatomic, strong) NSString *numberString;
 @property (nonatomic, strong) NSString *lastAnswer;
 @end
@@ -50,9 +50,9 @@
 @synthesize lastAnswer = _lastAnswer;
 @synthesize userIsInTheMiddleOfEnteringAnExpression =_userIsInTheMiddleOfEnteringAnExpression;
 
--(CalculatorBrain *)brain
+-(id)brain
 {
-    if(!_brain) _brain = [[CalculatorBrain alloc]init];
+    if(!_brain) _brain = [[IMCalculatorBrain alloc]init];
     return _brain;
 }
 

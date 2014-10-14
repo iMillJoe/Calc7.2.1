@@ -253,10 +253,28 @@
     
 }
 
+
+-(id) initFromThree3DPointsWithPointA: (CGPoint)pointA pointB: (CGPoint)pointB andPointC: (CGPoint)pointC usingDegrees: (BOOL) degrees
+{
+    /* this website might be helpfull
+     http://freespace.virgin.net/hugo.elias/routines/r_dist.htm
+     */
+    
+    
+    
+    
+    
+    
+    
+    return nil;
+}
+
 -(id) init
 {
     return [self initWithTriangle:nil];
 }
+
+
 
 #pragma mark solve
 

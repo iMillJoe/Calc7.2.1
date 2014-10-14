@@ -25,12 +25,12 @@
 
 #import "IMCalculatorBrain.h"
 
-@interface CalculatorBrain()
+@interface IMCalculatorBrain()
 @property(nonatomic, strong) NSMutableArray *operandStack;
 @property(nonatomic, strong, readwrite) NSString *syntaxError;
 @end
 
-@implementation CalculatorBrain
+@implementation IMCalculatorBrain
 
 
 
@@ -141,6 +141,7 @@
                     //number to the right of pi needs added.
                     [tokenized addObject: @"*"];
                     
+                    
                 }
                 [tokenized addObject:[NSNumber numberWithDouble: M_PI]];
             }
@@ -218,21 +219,56 @@
     {
     
         [tokenized addObject: [NSNumber numberWithDouble:[numberBuilder doubleValue]]];
-    
     }
     
 
     // turn all tokens into token objects
-    //NSLog(@"tokenized preFlip %@", tokenized);
+    for (int i = 0; i < [tokenized count]; i++) {
+        
+        //if I have a a double to the right of an incoming π or ), I should add a * token
+        if ([[[flippie lastObject] numberValue] doubleValue] == M_PI && [[[flippie lastObject] numberValue] doubleValue])
+        {
+            // losse the && above and peek at [tokenized atIndex: i];
+            
+           [flippie addObject:[IMShuntingToken newTokenFromObject:@"*"]];
+        }
+        
+        //more work on close paren to come
+        /*else if ([[[flippie lastObject] stringValue] isEqualToString: @")"] && [[[flippie lastObject] numberValue] doubleValue])
+        {
+            [flippie addObject:[IMShuntingToken newTokenFromObject:@"*"]];
+        }
+         */
+        
+        [flippie addObject:[IMShuntingToken newTokenFromObject:[tokenized objectAtIndex:i]]];
+    }
+    
+    [tokenized removeAllObjects];
+    [tokenized addObjectsFromArray:flippie];
+    
+    
+    /*
     while ([tokenized lastObject])
     {
-        
-        [flippie addObject:[IMShuntingToken newTokenFromObject:[tokenized objectAtIndex:0]]];
+        ;
         [tokenized removeObjectAtIndex:0];
     }
-    [tokenized addObjectsFromArray:flippie];
+    
+    */
 
-    ////*** end of Tokenizing***
+  /*  //// *** end of Tokenizing***
+    for (id obj in tokenized) {
+        if ([[obj numberValue] doubleValue] == M_PI) {
+            int nextIndex = [tokenized indexOfObject:obj] + 1;
+            if (nextIndex < [tokenized count]) {
+                if ([[tokenized objectAtIndex:nextIndex] doubleValue]) {
+                    [tokenized insertObject:[IMShuntingToken newTokenFromObject:@"*"] atIndex:nextIndex];
+                }
+            }
+            
+            
+            }
+   }*/
 
     
     

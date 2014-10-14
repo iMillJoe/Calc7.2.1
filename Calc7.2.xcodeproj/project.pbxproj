@@ -14,6 +14,7 @@
 		6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012AFAA17ADA9E200A1C291 /* IMTriangleDrawVeiw.m */; };
 		60604B1818E10FB400B7E59D /* IMCircumcircleDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60604B1718E10FB400B7E59D /* IMCircumcircleDrawView.m */; };
 		6072540F18DBA2E700DF4590 /* IMTriCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */; };
+		60AC765219E9832A0008A5D2 /* IMThreeDPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AC765119E9832A0008A5D2 /* IMThreeDPoint.m */; };
 		60E3F07018DBA7B500890216 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60E3F06F18DBA7B500890216 /* Images.xcassets */; };
 		60E3F07618DE190E00890216 /* IMCircumcircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E3F07518DE190E00890216 /* IMCircumcircleViewController.m */; };
 		60F8A8D017AB998E00B3D13F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8A8CF17AB998E00B3D13F /* Foundation.framework */; };
@@ -55,6 +56,8 @@
 		60604B1718E10FB400B7E59D /* IMCircumcircleDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCircumcircleDrawView.m; sourceTree = "<group>"; };
 		6072540D18DBA2E700DF4590 /* IMTriCalcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTriCalcViewController.h; sourceTree = "<group>"; };
 		6072540E18DBA2E700DF4590 /* IMTriCalcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTriCalcViewController.m; sourceTree = "<group>"; };
+		60AC765019E9832A0008A5D2 /* IMThreeDPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMThreeDPoint.h; sourceTree = "<group>"; };
+		60AC765119E9832A0008A5D2 /* IMThreeDPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMThreeDPoint.m; sourceTree = "<group>"; };
 		60E3F06F18DBA7B500890216 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		60E3F07418DE190E00890216 /* IMCircumcircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCircumcircleViewController.h; sourceTree = "<group>"; };
 		60E3F07518DE190E00890216 /* IMCircumcircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCircumcircleViewController.m; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				6012AFA617ADA9D800A1C291 /* IMTriangle.h */,
+				60AC765019E9832A0008A5D2 /* IMThreeDPoint.h */,
+				60AC765119E9832A0008A5D2 /* IMThreeDPoint.m */,
 				6012AFA717ADA9D800A1C291 /* IMTriangle.m */,
 				6012AFA017AD989A00A1C291 /* IMShuntingToken.h */,
 				6012AFA117AD989A00A1C291 /* IMShuntingToken.m */,
@@ -315,6 +320,7 @@
 				60F8A8E017AB998F00B3D13F /* IMAppDelegate.m in Sources */,
 				6012AFAB17ADA9E200A1C291 /* IMTriangleDrawVeiw.m in Sources */,
 				6012AFA817ADA9D800A1C291 /* IMTriangle.m in Sources */,
+				60AC765219E9832A0008A5D2 /* IMThreeDPoint.m in Sources */,
 				60604B1818E10FB400B7E59D /* IMCircumcircleDrawView.m in Sources */,
 				6072540F18DBA2E700DF4590 /* IMTriCalcViewController.m in Sources */,
 				6012AFA217AD989A00A1C291 /* IMShuntingToken.m in Sources */,

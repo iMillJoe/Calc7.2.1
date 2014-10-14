@@ -50,6 +50,7 @@
 
 -(id) initFromThreePointsWithPointA: (CGPoint)pointA pointB: (CGPoint)pointB andPointC: (CGPoint)pointC usingDegrees:(BOOL)degrees;
 
+-(id) initFromThree3DPointsWithPointA: (CGPoint)pointA pointB: (CGPoint)pointB andPointC: (CGPoint)pointC usingDegrees: (BOOL) degrees;
 
 
 //solve method figures out the data it can from the input

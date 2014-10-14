@@ -24,7 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "IMShuntingToken.h"   //BUILD SHUNTING TOKEN INTO CALCULATOR BRAIN.
 
-@interface CalculatorBrain : NSObject
+@interface IMCalculatorBrain : NSObject
 
 -(NSString *) evaluateExpression: (NSString *) input; // Returns an NSString, with a double or syntax error, for an infixed mathmatical expression.
 

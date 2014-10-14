@@ -41,22 +41,35 @@
     // 2π = 6.283185307179586
     test = [self.brain evaluateExpression:@"2π"];
     XCTAssertEqualObjects(test, @"6.283185307179586");
+    
     test = [self.brain evaluateExpression:@"π2"];
     XCTAssertEqualObjects(test, @"6.283185307179586");
+    
+    test = [self.brain evaluateExpression:@"π²+π3((13π/π12))"];
+    XCTAssertEqualObjects(test, @"1480.134966281113");
+    
     test = [self.brain evaluateExpression:@"2(3+5)"];
     XCTAssertEqualObjects(test, @"16");
+    
     test = [self.brain evaluateExpression:@"(3+5)2"];
     XCTAssertEqualObjects(test, @"16");
+    
     test= [self.brain evaluateExpression:@"2*2*2"];
     XCTAssertEqualObjects(test, @"8");
+    
     test = [self.brain evaluateExpression:@"2(3*3)+15/3"];
     XCTAssertEqualObjects(test, @"23");
+    
     test = [self.brain evaluateExpression:@"3(4(5(6*7²)))"];
     XCTAssertEqualObjects(test, @"17640");
     
+    test = [self.brain evaluateExpression:@"3((4*5)(5-1))²"];
+    XCTAssertEqualObjects(test, @"19200");
     
+    test = [self.brain evaluateExpression:@"3+2²(π5π/3(SIN30)9*12)+2"];
+    XCTAssertEqualObjects(test, @"3558.057584392167");
     
-    
+
     
     
     //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);

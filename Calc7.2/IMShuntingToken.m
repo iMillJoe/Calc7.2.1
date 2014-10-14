@@ -88,7 +88,7 @@
         else 
         {
             //redundant, perhaps an errror?
-            newToken.description = @"error";
+            newToken.description = input;
         }
         
     }

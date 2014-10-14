@@ -226,19 +226,25 @@
     for (int i = 0; i < [tokenized count]; i++) {
         
         //if I have a a double to the right of an incoming π or ), I should add a * token
-        if ([[[flippie lastObject] numberValue] doubleValue] == M_PI && [[[flippie lastObject] numberValue] doubleValue])
+        if ([[[flippie lastObject] numberValue] doubleValue] == M_PI && [[tokenized objectAtIndex:i] doubleValue])
         {
             // losse the && above and peek at [tokenized atIndex: i];
             
            [flippie addObject:[IMShuntingToken newTokenFromObject:@"*"]];
         }
         
-        //more work on close paren to come
-        /*else if ([[[flippie lastObject] stringValue] isEqualToString: @")"] && [[[flippie lastObject] numberValue] doubleValue])
+        else if ([[[flippie lastObject] stringValue] isEqualToString: @")"])
         {
-            [flippie addObject:[IMShuntingToken newTokenFromObject:@"*"]];
+            if ([[tokenized objectAtIndex:i] doubleValue])
+            {
+                [flippie addObject:[IMShuntingToken newTokenFromObject:@"*"]];
+            }
+            else if ([[tokenized objectAtIndex: i] isEqualToString:@"("])
+            {
+                [flippie addObject:[IMShuntingToken newTokenFromObject:@"*"]];
+            }
         }
-         */
+        
         
         [flippie addObject:[IMShuntingToken newTokenFromObject:[tokenized objectAtIndex:i]]];
     }

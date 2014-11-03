@@ -47,7 +47,6 @@
 -(NSNumber *)popOperand
 {
     NSNumber *operandObject = [self.operandStack lastObject];
-    //NSLog(@"popped operand %@",operandObject);
     if (operandObject) [self.operandStack removeLastObject];
     return operandObject;
     
@@ -57,11 +56,9 @@
 -(NSString *) evaluateExpression:(NSString *)input
 {
 
-        
-    
     //declare local variables. 
     NSString *inputChar;
-    NSString *numberBuilder = [NSString stringWithFormat:@""];
+    NSString *numberBuilder = @"";
     NSString *solution = @"not yet bob";
     NSMutableArray *inputStack =    [NSMutableArray arrayWithCapacity: [input length]];
     NSMutableArray *tokenized =     [NSMutableArray arrayWithCapacity:[input length]];
@@ -87,10 +84,15 @@
         //NSLog(@"%@" ,numberBuilder);
         inputChar = [inputStack objectAtIndex:0];
         //if inputChar is an operator or function
+        if ([inputChar isEqualToString:@" "]) {
+            [inputStack removeObjectAtIndex:0];
+            inputChar = [inputStack objectAtIndex:0];
+        }
+        
         if ([inputChar isEqualToString:@"*"] || [inputChar isEqualToString:@"/"] || [inputChar isEqualToString:@"-"] || [inputChar isEqualToString:@"+"] || [inputChar isEqualToString:@"S"] || [inputChar isEqualToString:@"C"] || [inputChar isEqualToString:@"T"] || [inputChar isEqualToString:@"("] || [inputChar isEqualToString:@")"] || [inputChar isEqualToString:@"π"] || [inputChar isEqualToString:@"√"] || [inputChar isEqualToString:@"²"] || [inputChar isEqualToString:@"⁻"] )
         {
             
-           // NSLog(@"operator or function in input");
+            //NSLog(@"operator or function in input");
             
             //if numberBuilder is not blank, add token wrapped number to tokenized array.
             if (![numberBuilder isEqualToString:@""]) {
@@ -105,7 +107,7 @@
                     [tokenized addObject:@"SIN"];
                     [inputStack removeObjectAtIndex:0];[inputStack removeObjectAtIndex:0];
                 }
-                else self.syntaxError = @"hello SIN error";
+                else self.syntaxError = @"SIN error";
             }
             
             else if ([inputChar isEqualToString: @"T"])
@@ -117,7 +119,7 @@
                     [inputStack removeObjectAtIndex:0];[inputStack removeObjectAtIndex:0];
                 }
                 
-                else self.syntaxError = @"hello TAN error";
+                else self.syntaxError = @"TAN error";
             }
             
             else if ([inputChar isEqualToString: @"C"])
@@ -129,7 +131,7 @@
                     [inputStack removeObjectAtIndex:0];
                     [inputStack removeObjectAtIndex:0];
                 }
-                else self.syntaxError = @"hello COS error";
+                else self.syntaxError = @"COS error";
             }
             
             //Pi and leftver tidbits
@@ -175,22 +177,16 @@
         {
             
             //if numberBuilder does not already contain a '.' or @"⁻"
-            if ( [numberBuilder rangeOfString:@"."].location == NSNotFound ||  [numberBuilder rangeOfString:@"⁻"].location == NSNotFound)
+            if ( [numberBuilder rangeOfString:@"."].location == NSNotFound || [numberBuilder rangeOfString:@"⁻"].location == NSNotFound)
             {
                 //I can freely append the inputChar
                  numberBuilder = [numberBuilder stringByAppendingString:inputChar];
-            }
-            
-            else if (![inputChar isEqualToString:@"."])
-            {
-                //if it does contain a "." make sure not to add it.
-                numberBuilder = [numberBuilder stringByAppendingString:inputChar];
             }
            
             else if ([inputChar isEqualToString:@"."]){
                 //and set the syntax error.
                 numberBuilder = @"0";
-                self.syntaxError = @"Invalid Decimal";
+                self.syntaxError = @"Bad Decimal";
             }
  
             
@@ -198,14 +194,7 @@
         
         else
         {
-            //if inputChar is not an operator or function, nor could make a number
-            //input is bad
-            
-            
-            //***** Note, why Im not checking for @" " it should not cause error most of the time, and be removed when appropriate.
-            //*** should this be done at the top or the bottom of the loop?
-            
-            self.syntaxError = @"sytaxError, Bad input";
+            if (!self.syntaxError) self.syntaxError = @"syntaxError, Bad input";
             numberBuilder = @"0";//why am I setting numberBulder to @"0" rather than @""
             //NSLog(@"input char %@ numberbuilder %@",inputChar, numberBuilder);
         }
@@ -255,7 +244,7 @@
     
     
 //***** tokenized should now be fixed, ONLY containg Token objects. ****//
-        NSLog(@"tokenized going into the yard %@", tokenized);
+        //NSLog(@"tokenized going into the yard %@", tokenized);
     
 // *** Shunting-yard ***
     
@@ -347,8 +336,7 @@
             //If the stack runs out without finding a left parenthesis, then there are mismatched parentheses
             if (!peek == YES)
             {
-                //NSLog(@"parenthesis are are unmatch");
-                self.syntaxError = @"mismatched parenthesis ()";
+                self.syntaxError = @"extra '('";
             }
             
             //Pop the left parenthesis from the stack, but not onto the output queue.
@@ -497,24 +485,27 @@
     
     //if the the operandStack contains more than one operand
     //something went wrong!! 
-        
     if ([self.operandStack count] > 1 )
     {
-        self.syntaxError = @"syntaxError";
+        if (!self.syntaxError)
+        {
+            //NSLog(@"OutputStack: %@", self.operandStack);
+            self.syntaxError = @"syntaxError";
+        }
     }
     
     // if there is a syntax error... 
-    NSLog(@"outputQueue %@" , outputQueue);
+
     if (self.syntaxError)
     {
-        //numberBuilder = @"";// Analize points outs out this value is never read, so I commented it out
         solution = self.syntaxError.description;
+        //NSLog(@"outputQueue %@" , outputQueue);
     }
 
     else if ([self.operandStack objectAtIndex:0])
     {
         solution =  [[[self.operandStack objectAtIndex:0]stringValue] stringByReplacingOccurrencesOfString:@"-" withString:@"⁻"];
-        NSLog(@"operand stack exits with values %@",[self.operandStack description]);
+        //NSLog(@"operand stack exits with values %@",[self.operandStack description]);
     }
     if ([self.operandStack objectAtIndex:0]) [self.operandStack removeAllObjects];
     self.syntaxError = nil;

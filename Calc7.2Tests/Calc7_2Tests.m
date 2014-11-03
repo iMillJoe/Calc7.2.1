@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "IMCalculatorBrain.h"
+#import "IMThreeDPoint.h"
 
 @interface Calc7_2Tests : XCTestCase
 @property (nonatomic, strong) IMCalculatorBrain* brain;
@@ -32,13 +33,11 @@
 
 - (void)testExample
 {
-    // 3 * 2 = 6
-    NSString* test = [self.brain evaluateExpression:@"3*2"];
+    
+    NSString* test;
+    test = [self.brain evaluateExpression:@"3*2"];
     XCTAssertEqualObjects(test, @"6" );
     
-    
-    // Implcit multiplacation with π
-    // 2π = 6.283185307179586
     test = [self.brain evaluateExpression:@"2π"];
     XCTAssertEqualObjects(test, @"6.283185307179586");
     
@@ -69,10 +68,37 @@
     test = [self.brain evaluateExpression:@"3+2²(π5π/3(SIN30)9*12)+2"];
     XCTAssertEqualObjects(test, @"3558.057584392167");
     
-
+    test = [self.brain evaluateExpression:@"2.3*4.53((π²9)"];
+    XCTAssertEqualObjects(test, @"extra '(' ");
+     
+    test = [self.brain evaluateExpression:@"2.3*4.5.3(π²9)"];
+    XCTAssertEqualObjects(test, @"syntaxError");
+    
+    test = [self.brain evaluateExpression:@"2(SIN 30)"];
+    XCTAssertEqualObjects(test, @"0.9999999999999999");
+    
+    test = [self.brain evaluateExpression:@"2(SIM 30)"];
+    XCTAssertEqualObjects(test, @"SIN error");
+    
+    test = [self.brain evaluateExpression:@"(14.378)π9(12.3).32"];
+    XCTAssertEqualObjects(test, @"1600.095674395477");
+    
+    test = [self.brain evaluateExpression:@"2-.5"];
+    XCTAssertEqualObjects(test, @"1.5");
+    
+    test = [self.brain evaluateExpression:@"2.-.5"];
+    XCTAssertEqualObjects(test, @"1.5");
+    
+    test = [self.brain evaluateExpression:@"2.0-0.5"];
+    XCTAssertEqualObjects(test, @"1.5");
+    
+    IMThreeDPoint* pointA = [[IMThreeDPoint alloc] initWithX: 2.3 Y: 3.4 andZ: .01];
+    IMThreeDPoint* pointB = [[IMThreeDPoint alloc] initWithX: 3.4 Y: 4.6 andZ: -.01];
+    XCTAssertEqual([pointA deltaX_ofPoint: pointB], 1.1);
+    XCTAssertEqual([pointA deltaY_ofPoint:pointB], 1.2);
+    XCTAssertEqual([pointA distanceToPoint:pointB], 1.628004914);
     
     
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
 }
 

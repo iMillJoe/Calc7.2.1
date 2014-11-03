@@ -106,9 +106,9 @@
 		60E3F07118DBC82E00890216 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6012AFA617ADA9D800A1C291 /* IMTriangle.h */,
 				60AC765019E9832A0008A5D2 /* IMThreeDPoint.h */,
 				60AC765119E9832A0008A5D2 /* IMThreeDPoint.m */,
+				6012AFA617ADA9D800A1C291 /* IMTriangle.h */,
 				6012AFA717ADA9D800A1C291 /* IMTriangle.m */,
 				6012AFA017AD989A00A1C291 /* IMShuntingToken.h */,
 				6012AFA117AD989A00A1C291 /* IMShuntingToken.m */,

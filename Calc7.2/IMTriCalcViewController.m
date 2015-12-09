@@ -50,9 +50,9 @@
         self.triangle.shouldUseDegrees = YES;
     }
     
-    self.triangle.SideA  = [[self.textVeiwSideA text] doubleValue];
-    self.triangle.SideB  = [[self.textVeiwSideB text] doubleValue];
-    self.triangle.SideC  = [[self.textVeiwSideC text] doubleValue];
+    self.triangle.sideA  = [[self.textVeiwSideA text] doubleValue];
+    self.triangle.sideB  = [[self.textVeiwSideB text] doubleValue];
+    self.triangle.sideC  = [[self.textVeiwSideC text] doubleValue];
     self.triangle.angleA = [[self.AngleATextFeild text] doubleValue];
     self.triangle.angleB = [[self.AngleBTextFeild text] doubleValue];
     self.triangle.angleC = [[self.AngleCTextFeild text] doubleValue];
@@ -111,12 +111,12 @@
 - (void)viewDidUnload
 {
 
-    self.TextVeiwSideA = nil;
-    self.TextVeiwSideB = nil;
-    self.TextVeiwSideC = nil;
-    self.angleATextFeild = nil;
-    self.angleBTextFeild = nil;
-    self.angleCTextFeild = nil;
+    self.textVeiwSideA = nil;
+    self.textVeiwSideB = nil;
+    self.textVeiwSideC = nil;
+    self.AngleATextFeild = nil;
+    self.AngleBTextFeild = nil;
+    self.AngleCTextFeild = nil;
 
     [self setTriDisplay:nil];
     [super viewDidUnload];
